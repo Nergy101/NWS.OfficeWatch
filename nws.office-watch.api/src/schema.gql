@@ -1,0 +1,96 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""An address entity"""
+type Address {
+  addressId: ID!
+  area: String!
+  city: String!
+  country: Country!
+  postal: String!
+  streetName: String!
+  streetNumber: Int!
+}
+
+"""A country entity"""
+type Country {
+  continent: String!
+  countryId: ID!
+  iso2Name: String!
+  iso3Name: String!
+  name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""An office entity"""
+type Office {
+  """Address of the Office"""
+  address: Address!
+  addressId: ID!
+  createdAt: DateTime!
+
+  """User that created the Office"""
+  creator: User!
+  creatorId: ID!
+
+  """Company name"""
+  name: String!
+
+  """Office GUID"""
+  officeId: ID!
+  officeSpaces: [OfficeSpace!]
+}
+
+"""An office-space entity"""
+type OfficeSpace {
+  availableFrom: DateTime!
+  availableUntil: DateTime!
+  booked: Boolean!
+  forAmountOfPeople: Int!
+  name: String!
+
+  """Office of the Office space"""
+  office: Office!
+  officeId: ID!
+  officeSpaceId: ID!
+  price: Float
+  rating: Float!
+  reservations: [Reservation!]
+}
+
+type Query {
+  office(officeId: ID!): Office!
+  officeSpace(officeSpaceId: ID!): OfficeSpace!
+  reservation(reservationId: ID!): Reservation!
+}
+
+"""A reservation entity"""
+type Reservation {
+  """Office space of the Reservation"""
+  officeSpace: OfficeSpace!
+  officeSpaceId: ID!
+  reservationId: ID!
+  reservedForId: ID!
+
+  """User that made the Reservation"""
+  user: User!
+}
+
+"""A user entity"""
+type User {
+  birthday: DateTime!
+  emailAddress: String!
+  firstName: String!
+  lastName: String!
+  lockedOut: Boolean!
+  lockedUntil: DateTime
+  middleName: String
+  office: Office
+  reservations: [Reservation!]
+  userId: ID!
+}
