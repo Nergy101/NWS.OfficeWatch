@@ -11,6 +11,7 @@ export class UserService {
       lastName: 'van Dyk',
       emailAddress: 'cdijk4@gmail.com',
       lockedOut: false,
+      officeId: '1',
     },
     {
       userId: '2',
@@ -19,6 +20,7 @@ export class UserService {
       lastName: 'van Ditches',
       emailAddress: 'cody.ditches@gmail.com',
       lockedOut: false,
+      officeId: '1',
     },
   ];
 
