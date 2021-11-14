@@ -30,7 +30,7 @@ export default {
       `,
     },
 
-    //? Why on earth does this not work
+    //? Why on earth does this not work?
     // officeSpace: {
     //   query: gql`
     //     query officeSpace($officeSpaceId: String!) {
