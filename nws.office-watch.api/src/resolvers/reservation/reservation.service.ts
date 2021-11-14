@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Reservation } from 'src/model/reservation.model';
+import { Reservation } from 'src/model/reservation/reservation.model';
 
 @Injectable()
 export class ReservationService {

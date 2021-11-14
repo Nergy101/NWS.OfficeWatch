@@ -1,5 +1,5 @@
 import { Field, ObjectType, Int, Float, ID } from '@nestjs/graphql';
-import { Reservation } from './reservation.model';
+import { Reservation } from '../reservation/reservation.model';
 
 @ObjectType({ description: 'An office-space entity' })
 export class OfficeSpace {

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Office } from 'src/model/office.model';
+import { Office } from 'src/model/office/office.model';
 
 @Injectable()
 export class OfficeService {

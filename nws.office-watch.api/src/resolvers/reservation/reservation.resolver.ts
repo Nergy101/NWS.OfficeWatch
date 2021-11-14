@@ -1,3 +1,4 @@
+import { forwardRef, Inject } from '@nestjs/common';
 import {
   Args,
   ID,
@@ -6,19 +7,19 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { OfficeSpace } from 'src/model/office-space.model';
-import { Reservation } from 'src/model/reservation.model';
-import { User } from 'src/model/user.model';
-import { OfficeSpaceService } from 'src/services/office-space.service';
-import { ReservationService } from 'src/services/reservation.service';
-import { UserService } from 'src/services/user.service';
+import { OfficeSpace } from 'src/model/office-space/office-space.model';
+import { Reservation } from 'src/model/reservation/reservation.model';
+import { User } from 'src/model/user/user.model';
+import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
+import { ReservationService } from 'src/resolvers/reservation/reservation.service';
+import { UserService } from 'src/resolvers/user/user.service';
 
 @Resolver(() => Reservation)
 export class ReservationResolver {
   constructor(
     private officeSpacesService: OfficeSpaceService,
-    private userService: UserService,
     private reservationService: ReservationService,
+    private userService: UserService,
   ) {}
 
   @Query(() => Reservation)

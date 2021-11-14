@@ -30,6 +30,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Mutation {
+  """Creates posted user"""
+  createUser(createdUser: UserCreateInput!): User!
+
+  """Deletes user by id"""
+  deleteUser(userId: String!): Boolean!
+}
+
 """An office entity"""
 type Office {
   """Address of the Office"""
@@ -70,7 +78,7 @@ type Query {
   address(addressId: ID!): Address!
   countries: [Country!]!
   country(countryId: ID!): Country!
-  office(officeId: ID!): Office!
+  office(officeId: ID!): Office
   officeSpace(officeSpaceId: ID!): OfficeSpace!
   reservation(reservationId: ID!): Reservation!
   user(userId: ID!): User!
@@ -98,7 +106,17 @@ type User {
   lockedUntil: DateTime
   middleName: String
   office: Office
-  officeId: ID!
+  officeId: ID
   reservations: [Reservation!]
   userId: ID!
+}
+
+input UserCreateInput {
+  birthday: DateTime!
+  emailAddress: String!
+  firstName: String!
+  lastName: String!
+  lockedOut: Boolean = false
+  lockedUntil: DateTime
+  middleName: String
 }

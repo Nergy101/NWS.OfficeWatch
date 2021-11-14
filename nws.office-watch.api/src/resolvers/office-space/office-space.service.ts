@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { OfficeSpace } from 'src/model/office-space.model';
+import { OfficeSpace } from 'src/model/office-space/office-space.model';
 
 @Injectable()
 export class OfficeSpaceService {

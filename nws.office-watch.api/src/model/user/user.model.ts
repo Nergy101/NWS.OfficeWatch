@@ -1,6 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Office } from './office.model';
-import { Reservation } from './reservation.model';
+import { Office } from '../office/office.model';
+import { Reservation } from '../reservation/reservation.model';
 
 @ObjectType({ description: 'A user entity' })
 export class User {
@@ -28,9 +28,9 @@ export class User {
   @Field({ nullable: true })
   lockedUntil?: Date;
 
-  @Field(type => ID)
-  officeId: string;
-  
+  @Field((type) => ID, { nullable: true })
+  officeId?: string;
+
   @Field((type) => Office, { nullable: true })
   office?: Office;
 

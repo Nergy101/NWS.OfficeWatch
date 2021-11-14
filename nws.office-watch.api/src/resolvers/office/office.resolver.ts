@@ -1,3 +1,4 @@
+import { forwardRef, Inject } from '@nestjs/common';
 import {
   Args,
   ID,
@@ -6,13 +7,13 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Address } from 'src/model/address.model';
-import { Office } from 'src/model/office.model';
-import { User } from 'src/model/user.model';
-import { AddressService } from 'src/services/address.service';
-import { OfficeSpaceService } from 'src/services/office-space.service';
-import { OfficeService } from 'src/services/office.service';
-import { UserService } from 'src/services/user.service';
+import { Address } from 'src/model/address/address.model';
+import { Office } from 'src/model/office/office.model';
+import { User } from 'src/model/user/user.model';
+import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
+import { OfficeService } from 'src/resolvers/office/office.service';
+import { UserService } from 'src/resolvers/user/user.service';
+import { AddressService } from '../address/address.service';
 
 @Resolver(() => Office)
 export class OfficeResolver {
@@ -23,7 +24,7 @@ export class OfficeResolver {
     private userService: UserService,
   ) {}
 
-  @Query(() => Office)
+  @Query(() => Office, { nullable: true })
   async office(@Args('officeId', { type: () => ID }) officeId: string) {
     return this.officeService.findOneById(officeId);
   }
