@@ -1,3 +1,8 @@
+
+<p align=center>
+<img src="../Logo_Nemic-40.png" width="320" height:"320"/>
+</p>
+
 # nws.office-watch.frontend
 
 ## Project setup

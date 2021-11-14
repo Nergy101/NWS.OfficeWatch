@@ -34,6 +34,10 @@ export class ReservationService {
     return this.reservations.filter((os) => os.officeSpaceId === officeSpaceId);
   }
 
+  findAllByUserId(userId: string): Reservation[] {
+    return this.reservations.filter((os) => os.reservedForId === userId);
+  }
+
   findAll(): Reservation[] {
     return this.reservations;
   }

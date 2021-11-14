@@ -28,6 +28,9 @@ export class User {
   @Field({ nullable: true })
   lockedUntil?: Date;
 
+  @Field(type => ID)
+  officeId: string;
+  
   @Field((type) => Office, { nullable: true })
   office?: Office;
 

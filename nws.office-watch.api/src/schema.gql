@@ -7,7 +7,10 @@ type Address {
   addressId: ID!
   area: String!
   city: String!
+
+  """User that created the Address"""
   country: Country!
+  countryId: ID!
   postal: String!
   streetName: String!
   streetNumber: Int!
@@ -64,9 +67,13 @@ type OfficeSpace {
 }
 
 type Query {
+  address(addressId: ID!): Address!
+  countries: [Country!]!
+  country(countryId: ID!): Country!
   office(officeId: ID!): Office!
   officeSpace(officeSpaceId: ID!): OfficeSpace!
   reservation(reservationId: ID!): Reservation!
+  user(userId: ID!): User!
 }
 
 """A reservation entity"""
@@ -91,6 +98,7 @@ type User {
   lockedUntil: DateTime
   middleName: String
   office: Office
+  officeId: ID!
   reservations: [Reservation!]
   userId: ID!
 }

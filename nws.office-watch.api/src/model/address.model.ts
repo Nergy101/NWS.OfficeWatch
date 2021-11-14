@@ -21,6 +21,6 @@ export class Address {
   @Field()
   area: string;
 
-  @Field((type) => Country)
-  country: Country;
+  @Field((type) => ID)
+  countryId: string;
 }
