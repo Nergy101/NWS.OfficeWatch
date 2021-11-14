@@ -14,7 +14,6 @@ import { UserService } from 'src/resolvers/user/user.service';
 import { ReservationService } from '../reservation/reservation.service';
 import { UserCreateInput } from 'src/model/user/user.create.model';
 import {v4 as uuidv4} from 'uuid';
-import { forwardRef, Inject } from '@nestjs/common';
 
 @Resolver(() => User)
 export class UserResolver {
