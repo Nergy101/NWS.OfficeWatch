@@ -1,5 +1,5 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
-import { OfficeSpace } from './office-space.model';
+import { OfficeSpace } from '../office-space/office-space.model';
 
 @ObjectType({ description: 'An office entity' })
 export class Office {

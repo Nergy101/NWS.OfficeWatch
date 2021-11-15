@@ -6,10 +6,10 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Address } from 'src/model/address.model';
-import { Country } from 'src/model/country.model';
-import { AddressService } from 'src/services/address.service';
-import { CountryService } from 'src/services/country.service';
+import { Address } from 'src/model/address/address.model';
+import { Country } from 'src/model/country/country.model';
+import { CountryService } from 'src/resolvers/country/country.service';
+import { AddressService } from './address.service';
 
 @Resolver(() => Address)
 export class AddressResolver {

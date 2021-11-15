@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/model/user.model';
+import { User } from 'src/model/user/user.model';
 
 @Injectable()
 export class UserService {
-  private readonly users: User[] = [
+  private users: User[] = [
     {
       userId: '1',
       birthday: new Date('09-04-1999'),
@@ -24,8 +24,20 @@ export class UserService {
     },
   ];
 
-  create(user: User) {
+  create(user: User): User {
     this.users.push(user);
+    return user;
+  }
+
+  deleteById(userId: string): boolean {
+    var deleted = false;
+
+    if (this.users.map((u) => u.userId).includes(userId)) {
+      this.users = this.users.filter((u) => u.userId != userId);
+      deleted = true;
+    }
+
+    return deleted;
   }
 
   findOneById(userId: string): User | undefined {

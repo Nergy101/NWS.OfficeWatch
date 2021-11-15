@@ -1,5 +1,4 @@
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
-import { Country } from './country.model';
 
 @ObjectType({ description: 'An address entity' })
 export class Address {
