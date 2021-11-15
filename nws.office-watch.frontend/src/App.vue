@@ -1,5 +1,6 @@
 <template>
   <div class="div">
+    <Nav></Nav>
     <img alt="Vue  logo" src="./assets/logo.png" />
     <div class="apollo-test">
       {{ officeSpace?.name }}
@@ -11,9 +12,12 @@
 
 <script>
 import { gql } from "@apollo/client/core";
-
+import Nav from "./layouts/Nav.vue";
 export default {
   name: "App",
+  components: {
+    Nav,
+  },
   data() {
     return {
       test: "1",
@@ -59,6 +63,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+html {
+  padding: 0;
+  margin: 0;
+  font-size: 67.5%;
+}
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>
