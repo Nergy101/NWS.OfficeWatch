@@ -14,6 +14,12 @@ export class ReservationService {
       officeSpaceId: '1',
       reservedForId: '2',
     },
+    
+    {
+      reservationId: '3',
+      officeSpaceId: '2',
+      reservedForId: '3',
+    },
   ];
 
   create(space: Reservation) {

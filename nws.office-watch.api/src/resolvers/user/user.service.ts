@@ -22,6 +22,15 @@ export class UserService {
       lockedOut: false,
       officeId: '1',
     },
+    {
+      userId: '3',
+      birthday: new Date('21-04-1999'),
+      firstName: 'Petr',
+      lastName: 'von Lar',
+      emailAddress: 'ptar.vonlar@gmail.com',
+      lockedOut: false,
+      officeId: null,
+    },
   ];
 
   create(user: User): User {
