@@ -15,6 +15,17 @@ export class OfficeSpaceService {
       name: 'Bamboo',
       booked: false,
     },
+    {
+      officeSpaceId: '2',
+      officeId: '1',
+      availableFrom: new Date('01-06-2021'),
+      availableUntil: new Date('12-01-2022'),
+      forAmountOfPeople: 4,
+      price: 50.0,
+      rating: 4.5,
+      name: 'Clouds',
+      booked: true,
+    },
   ];
 
   create(space: OfficeSpace) {
@@ -35,7 +46,11 @@ export class OfficeSpaceService {
     return this.officeSpaces.filter((os) => os.officeId === officeId);
   }
 
-  findAll(): OfficeSpace[] {
-    return this.officeSpaces;
+  findAll(booked: boolean = null): OfficeSpace[] {
+    if (booked == null) {
+      return this.officeSpaces;
+    }
+    
+    return this.officeSpaces.filter((space) => space.booked == booked);
   }
 }

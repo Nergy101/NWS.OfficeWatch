@@ -28,6 +28,11 @@ export class OfficeSpaceResolver {
     return this.officeSpacesService.findOneById(officeSpaceId);
   }
 
+  @Query(() => [OfficeSpace])
+  async officeSpaces(@Args('booked', { type: () => Boolean , nullable: true}) booked?: boolean) {
+    return this.officeSpacesService.findAll(booked);
+  }
+
   @ResolveField(() => Office, { description: 'Office of the Office space' })
   async office(@Parent() space: OfficeSpace) {
     return this.officeService.findOneById(space.officeId);
