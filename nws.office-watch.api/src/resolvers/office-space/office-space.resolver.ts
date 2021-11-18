@@ -6,6 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { ObjectId } from 'mongoose';
 import { OfficeSpace } from 'src/model/office-space/office-space.model';
 import { Office } from 'src/model/office/office.model';
 import { Reservation } from 'src/model/reservation/reservation.model';
@@ -23,19 +24,21 @@ export class OfficeSpaceResolver {
 
   @Query(() => OfficeSpace)
   async officeSpace(
-    @Args('officeSpaceId', { type: () => ID }) officeSpaceId: string,
+    @Args('officeSpaceId', { type: () => ID }) officeSpaceId: ObjectId,
   ) {
-    return this.officeSpacesService.findOneById(officeSpaceId);
+    return this.officeSpacesService.getById(officeSpaceId);
   }
 
   @Query(() => [OfficeSpace])
-  async officeSpaces(@Args('booked', { type: () => Boolean , nullable: true}) booked?: boolean) {
+  async officeSpaces(
+    @Args('booked', { type: () => Boolean, nullable: true }) booked?: boolean,
+  ) {
     return this.officeSpacesService.findAll(booked);
   }
 
   @ResolveField(() => Office, { description: 'Office of the Office space' })
   async office(@Parent() space: OfficeSpace) {
-    return this.officeService.findOneById(space.officeId);
+    return this.officeService.getById(space.officeId);
   }
 
   @ResolveField(() => Reservation, {
@@ -43,7 +46,7 @@ export class OfficeSpaceResolver {
   })
   async reservations(@Parent() officeSpace: OfficeSpace) {
     return this.reservationService.findAllByOfficeSpaceId(
-      officeSpace.officeSpaceId,
+      officeSpace._id,
     );
   }
 }

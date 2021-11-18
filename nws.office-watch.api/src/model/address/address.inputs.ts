@@ -1,7 +1,8 @@
 import { InputType, Field, Int, ID } from '@nestjs/graphql';
+import { ObjectId } from 'mongoose';
 
 @InputType()
-export class AddressCreateInput {
+export class CreateAddressInput {
   @Field()
   postal: string;
 
@@ -18,5 +19,5 @@ export class AddressCreateInput {
   area: string;
 
   @Field((type) => ID)
-  countryId: string;
+  countryId: ObjectId;
 }

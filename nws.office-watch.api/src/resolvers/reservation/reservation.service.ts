@@ -1,50 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { Reservation } from 'src/model/reservation/reservation.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
+import { CreateReservationInput } from 'src/model/reservation/reservation.inputs';
+import {
+  Reservation,
+  ReservationDocument,
+} from 'src/model/reservation/reservation.model';
 
 @Injectable()
 export class ReservationService {
-  private readonly reservations: Reservation[] = [
-    {
-      reservationId: '1',
-      officeSpaceId: '1',
-      reservedForId: '1',
-    },
-    {
-      reservationId: '2',
-      officeSpaceId: '1',
-      reservedForId: '2',
-    },
-    
-    {
-      reservationId: '3',
-      officeSpaceId: '2',
-      reservedForId: '3',
-    },
-  ];
+  constructor(
+    @InjectModel(Reservation.name)
+    private ReservationModel: Model<ReservationDocument>,
+  ) {}
 
-  create(space: Reservation) {
-    this.reservations.push(space);
+  create(payload: CreateReservationInput) {
+    const createdPerson = new this.ReservationModel(payload);
+    return createdPerson.save();
   }
 
-  findOneById(reservationId: string): Reservation | undefined {
-    const reservations = this.reservations.filter(
-      (os) => os.reservationId === reservationId,
-    );
-    if (reservations.length > 0) {
-      return reservations[0];
-    }
-    return undefined;
+  getById(_id: ObjectId) {
+    return this.ReservationModel.findById(_id).exec();
   }
 
-  findAllByOfficeSpaceId(officeSpaceId: string): Reservation[] {
-    return this.reservations.filter((os) => os.officeSpaceId === officeSpaceId);
+  findAllByOfficeSpaceId(officeSpaceId: ObjectId) {
+    return this.ReservationModel.find({ officeSpaceId }).exec();
   }
 
-  findAllByUserId(userId: string): Reservation[] {
-    return this.reservations.filter((os) => os.reservedForId === userId);
+  findAllByUserId(userId: ObjectId) {
+    return this.ReservationModel.find({ reservedForId: userId }).exec();
   }
 
-  findAll(): Reservation[] {
-    return this.reservations;
+  delete(_id: ObjectId) {
+    return this.ReservationModel.findByIdAndDelete(_id).exec();
   }
 }

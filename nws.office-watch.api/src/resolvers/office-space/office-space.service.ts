@@ -1,56 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { OfficeSpace } from 'src/model/office-space/office-space.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
+import { CreateOfficeSpaceInput } from 'src/model/office-space/office-space.inputs';
+import {
+  OfficeSpace,
+  OfficeSpaceDocument,
+} from 'src/model/office-space/office-space.model';
 
 @Injectable()
 export class OfficeSpaceService {
-  private readonly officeSpaces: OfficeSpace[] = [
-    {
-      officeSpaceId: '1',
-      officeId: '1',
-      availableFrom: new Date('01-01-2021'),
-      availableUntil: new Date('12-01-2021'),
-      forAmountOfPeople: 2,
-      price: 25.5,
-      rating: 3.7,
-      name: 'Bamboo',
-      booked: false,
-    },
-    {
-      officeSpaceId: '2',
-      officeId: '1',
-      availableFrom: new Date('01-06-2021'),
-      availableUntil: new Date('12-01-2022'),
-      forAmountOfPeople: 4,
-      price: 50.0,
-      rating: 4.5,
-      name: 'Clouds',
-      booked: true,
-    },
-  ];
+  constructor(
+    @InjectModel(OfficeSpace.name)
+    private OfficeSpaceModel: Model<OfficeSpaceDocument>,
+  ) {}
 
-  create(space: OfficeSpace) {
-    this.officeSpaces.push(space);
+  create(payload: CreateOfficeSpaceInput) {
+    const createdPerson = new this.OfficeSpaceModel(payload);
+    return createdPerson.save();
   }
 
-  findOneById(officeSpaceId: string): OfficeSpace | undefined {
-    const officeSpaces = this.officeSpaces.filter(
-      (os) => os.officeSpaceId === officeSpaceId,
-    );
-    if (officeSpaces.length > 0) {
-      return officeSpaces[0];
+  getById(_id: ObjectId) {
+    return this.OfficeSpaceModel.findById(_id).exec();
+  }
+
+  findAll(booked?: boolean) {
+    if (booked != null) {
+      return this.OfficeSpaceModel.find({ booked }).exec();
     }
-    return undefined;
+
+    return this.OfficeSpaceModel.find().exec();
   }
 
-  findAllByOfficeId(officeId: string): OfficeSpace[] {
-    return this.officeSpaces.filter((os) => os.officeId === officeId);
+  findAllByOfficeId(officeId: ObjectId){
+    return this.OfficeSpaceModel.find({ officeId }).exec();
   }
 
-  findAll(booked: boolean = null): OfficeSpace[] {
-    if (booked == null) {
-      return this.officeSpaces;
-    }
-    
-    return this.officeSpaces.filter((space) => space.booked == booked);
+  delete(_id: ObjectId) {
+    return this.OfficeSpaceModel.findByIdAndDelete(_id).exec();
   }
 }

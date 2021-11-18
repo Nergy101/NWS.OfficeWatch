@@ -1,42 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { Address } from 'src/model/address/address.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
+import { CreateAddressInput } from 'src/model/address/address.inputs';
+import { Address, AddressDocument } from 'src/model/address/address.model';
 
 @Injectable()
 export class AddressService {
-  private readonly addresses: Address[] = [
-    {
-      addressId: '1',
-      postal: '2222AB',
-      streetName: 'FirstStreet',
-      streetNumber: 12,
-      city: 'Edmonton',
-      area: 'Alberta',
-      countryId: '2',
-    },
-    {
-      addressId: '2',
-      postal: '1111AB',
-      streetName: 'SecondStreet',
-      streetNumber: 24,
-      city: 'Utrecht',
-      area: 'Utrecht',
-      countryId: '1',
-    },
-  ];
+  constructor(
+    @InjectModel(Address.name)
+    private addressModel: Model<AddressDocument>,
+  ) {}
 
-  create(address: Address) {
-    this.addresses.push(address);
+  create(payload: CreateAddressInput) {
+    const createdPerson = new this.addressModel(payload);
+    return createdPerson.save();
   }
 
-  findOneById(addressId: string): Address | undefined {
-    const addresses = this.addresses.filter((o) => o.addressId === addressId);
-    if (addresses.length > 0) {
-      return addresses[0];
-    }
-    return undefined;
+  getById(_id: ObjectId) {
+    return this.addressModel.findById(_id).exec();
   }
 
-  findAll(): Address[] {
-    return this.addresses;
+  delete(_id: ObjectId) {
+    return this.addressModel.findByIdAndDelete(_id).exec();
   }
 }

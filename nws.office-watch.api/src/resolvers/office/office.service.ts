@@ -1,31 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { Office } from 'src/model/office/office.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
+import { CreateOfficeInput } from 'src/model/office/office.inputs';
+import { Office, OfficeDocument } from 'src/model/office/office.model';
 
 @Injectable()
 export class OfficeService {
-  private readonly offices: Office[] = [
-    {
-      officeId: '1',
-      name: 'test',
-      createdAt: new Date('12-12-2021'),
-      creatorId: '1',
-      addressId: '1',
-    },
-  ];
+  constructor(
+    @InjectModel(Office.name)
+    private OfficeModel: Model<OfficeDocument>,
+  ) {}
 
-  create(office: Office) {
-    this.offices.push(office);
+  create(payload: CreateOfficeInput) {
+    const createdPerson = new this.OfficeModel(payload);
+    return createdPerson.save();
   }
 
-  findOneById(officeId: string): Office | undefined {
-    const office = this.offices.filter((o) => o.officeId === officeId);
-    if (office.length > 0) {
-      return office[0];
+  getById(_id: ObjectId) {
+    return this.OfficeModel.findById(_id).exec();
+  }
+
+  findAll(booked?: boolean) {
+    if (booked != null) {
+      return this.OfficeModel.find({ booked }).exec();
     }
-    return undefined;
+
+    return this.OfficeModel.find().exec();
   }
 
-  findAll(): Office[] {
-    return this.offices;
+  delete(_id: ObjectId) {
+    return this.OfficeModel.findByIdAndDelete(_id).exec();
   }
 }

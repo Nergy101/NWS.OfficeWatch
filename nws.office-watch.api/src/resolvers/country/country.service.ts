@@ -1,38 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { Country } from 'src/model/country/country.model';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, ObjectId } from 'mongoose';
+import { Country, CountryDocument } from 'src/model/country/country.model';
 
 @Injectable()
 export class CountryService {
-  private readonly countries: Country[] = [
-    {
-      countryId: '1',
-      name: 'the Netherlands',
-      iso2Name: 'NL',
-      iso3Name: 'NLD',
-      continent: 'Europe',
-    },
-    {
-        countryId: '2',
-        name: 'Canada',
-        iso2Name: 'CA',
-        iso3Name: 'CAD',
-        continent: 'North America',
-    }
-  ];
+  constructor(
+    @InjectModel(Country.name)
+    private countryModel: Model<CountryDocument>,
+  ) {}
 
-  create(country: Country) {
-    this.countries.push(country);
+  getById(_id: ObjectId) {
+    return this.countryModel.findById(_id).exec();
   }
 
-  findOneById(CountryId: string): Country | undefined {
-    const Country = this.countries.filter((o) => o.countryId === CountryId);
-    if (Country.length > 0) {
-      return Country[0];
+  findAll(booked?: boolean) {
+    if (booked != null) {
+      return this.countryModel.find({ booked }).exec();
     }
-    return undefined;
+
+    return this.countryModel.find().exec();
   }
 
-  findAll(): Country[] {
-    return this.countries;
+  delete(_id: ObjectId) {
+    return this.countryModel.findByIdAndDelete(_id).exec();
   }
 }

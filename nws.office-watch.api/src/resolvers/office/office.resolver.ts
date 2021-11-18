@@ -7,6 +7,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { ObjectId } from 'mongoose';
 import { Address } from 'src/model/address/address.model';
 import { Office } from 'src/model/office/office.model';
 import { User } from 'src/model/user/user.model';
@@ -25,22 +26,22 @@ export class OfficeResolver {
   ) {}
 
   @Query(() => Office, { nullable: true })
-  async office(@Args('officeId', { type: () => ID }) officeId: string) {
-    return this.officeService.findOneById(officeId);
+  async office(@Args('officeId', { type: () => ID }) officeId: ObjectId) {
+    return this.officeService.getById(officeId);
   }
 
   @ResolveField()
   async officeSpaces(@Parent() office: Office) {
-    return this.officeSpacesService.findAllByOfficeId(office.officeId);
+    return this.officeSpacesService.findAllByOfficeId(office._id);
   }
 
   @ResolveField(() => User, { description: 'User that created the Office' })
   async creator(@Parent() office: Office) {
-    return this.userService.findOneById(office.creatorId);
+    return this.userService.getById(office.creatorId);
   }
 
   @ResolveField(() => Address, { description: 'Address of the Office' })
   async address(@Parent() office: Office) {
-    return this.addressService.findOneById(office.addressId);
+    return this.addressService.getById(office.addressId);
   }
 }

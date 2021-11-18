@@ -1,63 +1,37 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/model/user/user.model';
+import { InjectModel } from '@nestjs/mongoose';
+import {
+  CreateUserInput,
+  ListUserInput,
+  UpdateUserInput,
+} from 'src/model/user/user.inputs';
+import { User, UserDocument } from 'src/model/user/user.model';
+import { Model, ObjectId, Schema as MongooseSchema } from 'mongoose';
 
 @Injectable()
 export class UserService {
-  private users: User[] = [
-    {
-      userId: '1',
-      birthday: new Date('09-04-2010'),
-      firstName: 'Chris',
-      lastName: 'van Dyk',
-      emailAddress: 'cdijk4@gmail.com',
-      lockedOut: false,
-      officeId: '1',
-    },
-    {
-      userId: '2',
-      birthday: new Date('25-12-1994'),
-      firstName: 'Cody',
-      lastName: 'van Ditches',
-      emailAddress: 'cody.ditches@gmail.com',
-      lockedOut: false,
-      officeId: '1',
-    },
-    {
-      userId: '3',
-      birthday: new Date('21-04-1999'),
-      firstName: 'Petr',
-      lastName: 'von Lar',
-      emailAddress: 'ptar.vonlar@gmail.com',
-      lockedOut: false,
-      officeId: null,
-    },
-  ];
+  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  create(user: User): User {
-    this.users.push(user);
-    return user;
+  create(payload: CreateUserInput) {
+    const createdPerson = new this.userModel(payload);
+    return createdPerson.save();
   }
 
-  deleteById(userId: string): boolean {
-    var deleted = false;
-
-    if (this.users.map((u) => u.userId).includes(userId)) {
-      this.users = this.users.filter((u) => u.userId != userId);
-      deleted = true;
-    }
-
-    return deleted;
+  getById(_id: ObjectId) {
+    return this.userModel.findById(_id).exec();
   }
 
-  findOneById(userId: string): User | undefined {
-    const users = this.users.filter((o) => o.userId === userId);
-    if (users.length > 0) {
-      return users[0];
-    }
-    return undefined;
+  list(filters: ListUserInput) {
+    return this.userModel.find({ ...filters }).exec();
   }
 
-  findAll(): User[] {
-    return this.users;
+  update(payload: UpdateUserInput) {
+    return this.userModel
+      .findByIdAndUpdate(payload._id, payload, { new: true })
+      .exec();
+  }
+
+  delete(_id: ObjectId) {
+    return this.userModel.findByIdAndDelete(_id).exec();
   }
 }

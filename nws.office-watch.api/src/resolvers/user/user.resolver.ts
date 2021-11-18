@@ -12,8 +12,9 @@ import {
 import { User } from 'src/model/user/user.model';
 import { UserService } from 'src/resolvers/user/user.service';
 import { ReservationService } from '../reservation/reservation.service';
-import { UserCreateInput } from 'src/model/user/user.create.model';
 import {v4 as uuidv4} from 'uuid';
+import { ObjectId, Schema } from 'mongoose';
+import { CreateUserInput } from 'src/model/user/user.inputs';
 
 @Resolver(() => User)
 export class UserResolver {
@@ -25,24 +26,23 @@ export class UserResolver {
   ) {}
 
   @Query(() => User)
-  async user(@Args('userId', { type: () => ID }) userId: string) {
-    return this.userService.findOneById(userId);
+  async user(@Args('_id', { type: () => ID }) _id: ObjectId) {
+    return this.userService.getById(_id);
   }
 
   @ResolveField(() => Office, { description: 'Office the User has created' })
   async office(@Parent() user: User) {
-    return this.officeService.findOneById(user.officeId);
+    return this.officeService.getById(user.officeId);
   }
 
   @ResolveField(() => User, { description: 'Reservations of the User' })
-  async reservations(@Parent() User: User) {
-    return this.reservationService.findAllByUserId(User.userId);
+  async reservations(@Parent() user: User) {
+    return this.reservationService.findAllByUserId(user._id);
   }
 
   @Mutation(() => User, { description: 'Creates posted user' })
-  async createUser(@Args('createdUser') createdUser: UserCreateInput) {
+  async createUser(@Args('createdUser') createdUser: CreateUserInput) {
     return this.userService.create({
-      userId: uuidv4(),
       birthday: createdUser.birthday,
       firstName: createdUser.firstName,
       middleName: createdUser.middleName,
@@ -54,7 +54,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean, { description: 'Deletes user by id' })
-  async deleteUser(@Args('userId') userId: string) {
-    return this.userService.deleteById(userId);
+  async deleteUser(@Args('_id', {type: () => ID}) _id: ObjectId) {
+    return this.userService.delete(_id);
   }
 }

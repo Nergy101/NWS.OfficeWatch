@@ -6,6 +6,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
+import { ObjectId } from 'mongoose';
 import { OfficeSpace } from 'src/model/office-space/office-space.model';
 import { Reservation } from 'src/model/reservation/reservation.model';
 import { User } from 'src/model/user/user.model';
@@ -23,20 +24,20 @@ export class ReservationResolver {
 
   @Query(() => Reservation)
   async reservation(
-    @Args('reservationId', { type: () => ID }) reservationId: string,
+    @Args('reservationId', { type: () => ID }) reservationId: ObjectId,
   ) {
-    return this.reservationService.findOneById(reservationId);
+    return this.reservationService.getById(reservationId);
   }
 
   @ResolveField(() => OfficeSpace, {
     description: 'Office space of the Reservation',
   })
   async officeSpace(@Parent() reservation: Reservation) {
-    return this.officeSpacesService.findOneById(reservation.officeSpaceId);
+    return this.officeSpacesService.getById(reservation.officeSpaceId);
   }
 
   @ResolveField(() => User, { description: 'User that made the Reservation' })
   async user(@Parent() reservation: Reservation) {
-    return this.userService.findOneById(reservation.reservedForId);
+    return this.userService.getById(reservation.reservedForId);
   }
 }

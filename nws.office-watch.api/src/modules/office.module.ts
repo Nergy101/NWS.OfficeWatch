@@ -7,10 +7,42 @@ import { OfficeSpaceResolver } from './../resolvers/office-space/office-space.re
 import { ReservationService } from 'src/resolvers/reservation/reservation.service';
 import { ReservationResolver } from './../resolvers/reservation/reservation.resolver';
 import { UserService } from 'src/resolvers/user/user.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Office, OfficeSchema } from 'src/model/office/office.model';
+import {
+  OfficeSpace,
+  OfficeSpaceSchema,
+} from 'src/model/office-space/office-space.model';
+import {
+  Reservation,
+  ReservationSchema,
+} from 'src/model/reservation/reservation.model';
 
 @Module({
-  imports: [AddressModule],
-  providers: [UserService, OfficeService, OfficeSpaceService, ReservationService, OfficeResolver, OfficeSpaceResolver, ReservationResolver],
-  exports: [OfficeService, OfficeSpaceService, ReservationService, OfficeResolver, OfficeSpaceResolver, ReservationResolver],
+  imports: [
+    AddressModule,
+    MongooseModule.forFeature([
+      { name: Office.name, schema: OfficeSchema },
+      { name: OfficeSpace.name, schema: OfficeSpaceSchema },
+      { name: Reservation.name, schema: ReservationSchema },
+    ]),
+  ],
+  // providers: [
+  //   UserService,
+  //   OfficeService,
+  //   OfficeSpaceService,
+  //   ReservationService,
+  //   OfficeResolver,
+  //   OfficeSpaceResolver,
+  //   ReservationResolver,
+  // ],
+  // exports: [
+  //   OfficeService,
+  //   OfficeSpaceService,
+  //   ReservationService,
+  //   OfficeResolver,
+  //   OfficeSpaceResolver,
+  //   ReservationResolver,
+  // ],
 })
 export class OfficeModule {}
