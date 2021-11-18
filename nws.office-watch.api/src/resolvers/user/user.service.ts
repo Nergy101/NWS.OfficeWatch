@@ -6,7 +6,7 @@ export class UserService {
   private users: User[] = [
     {
       userId: '1',
-      birthday: new Date('09-04-1999'),
+      birthday: new Date('09-04-2010'),
       firstName: 'Chris',
       lastName: 'van Dyk',
       emailAddress: 'cdijk4@gmail.com',
@@ -15,7 +15,7 @@ export class UserService {
     },
     {
       userId: '2',
-      birthday: new Date('05-07-1992'),
+      birthday: new Date('25-12-1994'),
       firstName: 'Cody',
       lastName: 'van Ditches',
       emailAddress: 'cody.ditches@gmail.com',
