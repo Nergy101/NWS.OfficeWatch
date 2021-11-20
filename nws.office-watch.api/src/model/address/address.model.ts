@@ -3,6 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongoose';
 import { Country } from '../country/country.model';
 import { Schema as MongoSchema } from 'mongoose';
+
 @Schema()
 @ObjectType({ description: 'An address entity' })
 export class Address {

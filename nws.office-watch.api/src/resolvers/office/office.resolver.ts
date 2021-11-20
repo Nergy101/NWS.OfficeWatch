@@ -2,6 +2,7 @@ import { forwardRef, Inject } from '@nestjs/common';
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -9,6 +10,7 @@ import {
 } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 import { Address } from 'src/model/address/address.model';
+import { CreateOfficeInput } from 'src/model/office/office.inputs';
 import { Office } from 'src/model/office/office.model';
 import { User } from 'src/model/user/user.model';
 import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
@@ -43,5 +45,10 @@ export class OfficeResolver {
   @ResolveField(() => Address, { description: 'Address of the Office' })
   async address(@Parent() office: Office) {
     return this.addressService.getById(office.addressId);
+  }
+
+  @Mutation(() => Office, { description: 'Creates posted office' })
+  async createOffice(@Args('createdOffice') createdOffice: CreateOfficeInput) {
+    return this.officeService.create(createdOffice);
   }
 }

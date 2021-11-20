@@ -1,12 +1,14 @@
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
+import { CreateOfficeSpaceInput } from 'src/model/office-space/office-space.inputs';
 import { OfficeSpace } from 'src/model/office-space/office-space.model';
 import { Office } from 'src/model/office/office.model';
 import { Reservation } from 'src/model/reservation/reservation.model';
@@ -48,5 +50,10 @@ export class OfficeSpaceResolver {
     return this.reservationService.findAllByOfficeSpaceId(
       officeSpace._id,
     );
+  }
+  
+  @Mutation(() => OfficeSpace, { description: 'Creates posted office-space' })
+  async createOfficeSpace(@Args('createdOfficeSpace') createdOfficeSpace: CreateOfficeSpaceInput) {
+    return this.officeSpacesService.create(createdOfficeSpace);
   }
 }
