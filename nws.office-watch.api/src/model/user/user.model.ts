@@ -43,7 +43,7 @@ export class User {
   @Field((type) => ID, { nullable: true })
   officeId?: ObjectId;
 
-  @Prop()
+  @Prop([{ type: MongoSchema.Types.ObjectId, ref: () => Reservation }])
   @Field((type) => [Reservation], { nullable: true })
   reservations?: Reservation[];
 }

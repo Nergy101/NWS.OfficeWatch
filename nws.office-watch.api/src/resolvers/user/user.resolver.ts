@@ -12,7 +12,7 @@ import {
 import { User } from 'src/model/user/user.model';
 import { UserService } from 'src/resolvers/user/user.service';
 import { ReservationService } from '../reservation/reservation.service';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import { ObjectId, Schema } from 'mongoose';
 import { CreateUserInput } from 'src/model/user/user.inputs';
 
@@ -30,12 +30,18 @@ export class UserResolver {
     return this.userService.getById(_id);
   }
 
-  @ResolveField(() => Office, { description: 'Office the User has created' })
-  async office(@Parent() user: User) {
-    return this.officeService.getById(user.officeId);
+  @ResolveField(() => Office, {
+    nullable: true,
+    description: 'Office the User may have created',
+  })
+  async office(@Parent() user: User): Promise<Office | null> {
+    if (user.officeId) {
+      return this.officeService.getById(user.officeId);
+    }
+    return null;
   }
 
-  @ResolveField(() => User, { description: 'Reservations of the User' })
+  @ResolveField(() => User, { nullable: true, description: 'Reservations of the User' })
   async reservations(@Parent() user: User) {
     return this.reservationService.findAllByUserId(user._id);
   }
@@ -54,7 +60,12 @@ export class UserResolver {
   }
 
   @Mutation(() => Boolean, { description: 'Deletes user by id' })
-  async deleteUser(@Args('_id', {type: () => ID}) _id: ObjectId) {
-    return this.userService.delete(_id);
+  async deleteUser(@Args('_id', { type: () => ID }) _id: ObjectId) {
+
+    if(this.userService.delete(_id)){
+      return true
+    }
+    
+    return false;
   }
 }
