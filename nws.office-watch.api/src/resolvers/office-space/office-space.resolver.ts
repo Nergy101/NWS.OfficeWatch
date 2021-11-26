@@ -8,7 +8,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
-import { CreateOfficeSpaceInput } from 'src/model/office-space/office-space.inputs';
+import { CreateOfficeSpaceInput, UpdateOfficeSpaceInput } from 'src/model/office-space/office-space.inputs';
 import { OfficeSpace } from 'src/model/office-space/office-space.model';
 import { Office } from 'src/model/office/office.model';
 import { Reservation } from 'src/model/reservation/reservation.model';
@@ -47,13 +47,30 @@ export class OfficeSpaceResolver {
     description: 'Reservations of the Office space',
   })
   async reservations(@Parent() officeSpace: OfficeSpace) {
-    return this.reservationService.findAllByOfficeSpaceId(
-      officeSpace._id,
-    );
+    return this.reservationService.findAllByOfficeSpaceId(officeSpace._id);
   }
-  
+
   @Mutation(() => OfficeSpace, { description: 'Creates posted office-space' })
-  async createOfficeSpace(@Args('createdOfficeSpace') createdOfficeSpace: CreateOfficeSpaceInput) {
+  async createOfficeSpace(
+    @Args('createdOfficeSpace') createdOfficeSpace: CreateOfficeSpaceInput,
+  ) {
     return this.officeSpacesService.create(createdOfficeSpace);
+  }
+
+  
+  @Mutation(() => OfficeSpace, { description: 'Updates posted office-space' })
+  async updateOfficeSpace(
+    @Args('updatedOfficeSpace') updatedOfficeSpace: UpdateOfficeSpaceInput,
+  ) {
+    return this.officeSpacesService.update(updatedOfficeSpace);
+  }
+
+  @Mutation(() => OfficeSpace, {
+    description: 'Deletes posted office-space by Id',
+  })
+  async deleteOfficeSpace(
+    @Args('officeSpaceId', { type: () => ID }) officeSpaceId: ObjectId,
+  ) {
+    return this.officeSpacesService.delete(officeSpaceId);
   }
 }

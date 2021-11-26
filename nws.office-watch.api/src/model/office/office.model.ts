@@ -20,17 +20,17 @@ export class Office {
   @Field()
   createdAt: Date;
 
-  @Prop({ type: MongoSchema.Types.ObjectId, ref: () => User })
-  @Field((type) => ID)
+  @Prop({ type: MongoSchema.Types.ObjectId, ref: () => User.name })
+  @Field((type) => ID,  { description: 'User GUID' })
   creatorId: ObjectId;
 
-  @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Address })
-  @Field((type) => ID)
+  @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Address.name })
+  @Field((type) => ID, { description: 'Address GUID' })
   addressId: ObjectId;
 
-  @Prop()
-  @Field((type) => [OfficeSpace], { nullable: true })
-  officeSpaces?: OfficeSpace[];
+  @Prop([{ type: MongoSchema.Types.ObjectId, ref: () => OfficeSpace.name }])
+  @Field((type) => [ID], { nullable: true, description: 'GUIDs of the office-spaces in the office' })
+  officeSpaceIds?: [MongoSchema.Types.ObjectId];
 }
 
 export type OfficeDocument = Office & Document;

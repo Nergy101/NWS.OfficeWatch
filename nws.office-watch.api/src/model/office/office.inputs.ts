@@ -1,4 +1,5 @@
 import { InputType, Field, ID } from '@nestjs/graphql';
+import { ObjectId } from 'mongoose';
 
 @InputType()
 export class CreateOfficeInput {
@@ -18,4 +19,19 @@ export class CreateOfficeInput {
 
   @Field((type) => ID)
   addressId: string;
+}
+
+@InputType()
+export class UpdateOfficeInput {
+  @Field((type) => ID, { description: 'Office GUID' })
+  _id: ObjectId;
+
+  @Field({ description: 'Company name' })
+  name: string;
+
+  @Field((type) => ID)
+  creatorId: ObjectId;
+
+  @Field((type) => ID)
+  addressId: ObjectId;
 }
