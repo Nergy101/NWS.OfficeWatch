@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
+import "./assets/styles/main.scss";
+import "bootstrap";
 import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="div">
+  <div :class="appColors" ref="appColor">
     <Nav></Nav>
     <img alt="Vue  logo" src="./assets/logo.png" />
     <div class="apollo-test">
@@ -7,6 +7,7 @@
     </div>
     <div v-if="user" class="apollo-event-test">{{ user }}</div>
     <button @click="getUserId()">Get user id</button>
+    <button @click="switchTheme">Switch theme</button>
   </div>
 </template>
 
@@ -21,6 +22,7 @@ export default {
   data() {
     return {
       test: "1",
+      appColors: "",
     };
   },
   apollo: {
@@ -52,25 +54,30 @@ export default {
     getUserId() {
       // Add a mutation
     },
+    switchTheme() {
+      this.appColors === ""
+        ? (this.appColors = "dark-theme")
+        : (this.appColors = "");
+    },
   },
 };
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  margin-top: 60px;
 }
 html {
   padding: 0;
   margin: 0;
-  font-size: 67.5%;
+  font-size: 62.5%;
 }
 body {
   padding: 0;
   margin: 0;
+  font-size: 1.6rem;
 }
 </style>

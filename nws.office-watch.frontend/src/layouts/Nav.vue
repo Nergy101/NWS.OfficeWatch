@@ -1,303 +1,129 @@
 <template>
-  <!-- Section for nav -->
-  <div class="nav-section">
-    <!-- ************************ -->
-    <!--    MOBILE NAVIGATION -->
-    <!-- ************************** -->
+  <div class="navbar-container">
+    <div class="navbar-container__logo">
+      <svg
+        viewBox="0 0 58 58"
+        class="navbar-container__logo__svg"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_36_7)">
+          <path
+            d="M28.7032 58.0063C20.6595 57.8677 13.5344 54.8795 7.82441 48.7977C2.41646 43.0363 -0.196493 36.1045 0.0124601 28.2132C0.221413 20.3219 3.21296 13.5597 8.90848 8.09612C14.7157 2.51263 21.7353 -0.198465 29.7914 0.0186705C37.8475 0.235806 44.687 3.32741 50.1881 9.20041C55.7202 15.1106 58.3145 22.2099 57.9752 30.2936C57.6546 37.945 54.6837 44.5067 49.1868 49.8275C43.5823 55.2311 36.7985 57.905 28.7032 58.0063ZM23.3511 33.0481C23.558 33.4224 23.7255 33.7636 23.9097 34.1007L26.2888 38.4662C26.7543 39.3223 27.2136 40.1846 27.6791 41.0428C28.4556 42.4697 29.2342 43.8952 30.0148 45.3194C30.2962 45.8364 30.5837 46.3533 30.8651 46.8724C30.8791 46.9139 30.9022 46.9517 30.9326 46.9831C30.963 47.0146 31.0001 47.0389 31.041 47.0544C31.082 47.0698 31.1259 47.076 31.1695 47.0724C31.2132 47.0688 31.2555 47.0556 31.2934 47.0337C32.1271 46.7305 32.9277 46.3432 33.6829 45.8777C36.0243 44.4838 37.742 42.2457 38.4826 39.6242C38.8969 38.2502 39.1122 36.824 39.1219 35.389C39.1173 34.5435 39.0704 33.6987 38.9812 32.8579C38.9468 32.302 38.8735 31.7491 38.7619 31.2035C38.4826 29.9627 38.1826 28.7364 37.8433 27.5184C37.4438 26.0294 36.8992 24.5832 36.2172 23.2005C35.5614 21.8977 34.8642 20.6114 34.1173 19.3562C33.2034 17.8008 32.1383 16.3392 30.9375 14.9928C30.7989 14.8377 30.7948 14.7281 30.9727 14.6185C31.0141 14.5936 31.0534 14.5647 31.0927 14.5357C32.0037 13.8205 33.1285 13.4316 34.287 13.4315C34.7522 13.4608 35.2156 13.5147 35.6752 13.5928C35.7476 13.5928 35.8821 13.5452 35.8965 13.4935C36.12 12.7097 36.3289 11.9198 36.5461 11.1112C34.866 10.6446 33.0765 10.7694 31.4775 11.4648C29.8219 12.1933 28.4015 13.3675 27.375 14.8563C27.7577 15.2988 28.1425 15.7041 28.4859 16.1446C29.1673 17.0132 29.8362 17.8927 30.4927 18.7833C31.6372 20.3433 32.6569 21.991 33.5422 23.7113C34.139 24.8707 34.6346 26.0794 35.0235 27.324C35.3586 28.3931 35.6441 29.4767 35.9276 30.5603C36.2284 31.7603 36.4024 32.9885 36.4468 34.2248C36.4678 35.0468 36.4381 35.8693 36.3579 36.6877C36.2666 37.8241 35.9869 38.9373 35.5303 39.982C34.978 41.2827 34.2208 42.4242 33.0705 43.2721C32.7974 43.4789 32.5036 43.6443 32.2036 43.8387C32.063 43.5719 31.9471 43.3465 31.8251 43.1232C31.1644 41.9155 30.5031 40.7071 29.841 39.4981C29.3776 38.6481 28.9225 37.7941 28.459 36.9441C27.5736 35.3167 26.6798 33.6912 25.7964 32.0617C25.2979 31.1476 24.8096 30.2274 24.3214 29.3051C24.249 29.1686 24.1786 29.1355 24.0317 29.2079C23.341 29.5526 22.7012 29.991 22.1305 30.5107C21.1001 31.4461 20.2843 32.5932 19.7389 33.8732C19.258 35.0147 18.9781 36.2306 18.9113 37.4673C18.832 38.7133 18.9134 39.9644 19.1534 41.1897C19.2879 41.8617 19.4554 42.5297 19.6106 43.1976C19.6478 43.361 19.7099 43.4458 19.9168 43.3817C20.674 43.1459 21.4374 42.9309 22.207 42.7055C22.1718 42.5669 22.1408 42.4408 22.1056 42.3146C21.824 41.3482 21.6499 40.3537 21.5863 39.3492C21.5045 38.339 21.5672 37.3224 21.7725 36.3299C22.0322 35.1268 22.5732 34.0022 23.3511 33.0481Z"
+            fill="#FF8D1B"
+          />
+          <path
+            d="M23.3511 33.0478C22.5708 34.0033 22.0284 35.1302 21.7684 36.3359C21.563 37.3283 21.5003 38.345 21.5822 39.3551C21.6457 40.3597 21.8199 41.3541 22.1015 42.3205C22.1367 42.4467 22.1677 42.5728 22.2029 42.7114C21.4333 42.9368 20.6699 43.1519 19.9127 43.3876C19.7058 43.4517 19.6437 43.3669 19.6065 43.2036C19.4513 42.5356 19.2837 41.8677 19.1493 41.1956C18.9092 39.9703 18.8279 38.7193 18.9072 37.4733C18.9739 36.2365 19.2539 35.0206 19.7347 33.8791C20.284 32.5987 21.1041 31.4523 22.1387 30.5187C22.7094 29.999 23.3492 29.5606 24.04 29.2159C24.1869 29.1435 24.2572 29.1766 24.3296 29.3131C24.8179 30.2354 25.3061 31.1556 25.8047 32.0697C26.6881 33.6992 27.5819 35.3246 28.4673 36.9521C28.9307 37.8021 29.3859 38.6561 29.8493 39.5061C30.5086 40.7165 31.1699 41.9249 31.8333 43.1312C31.9554 43.3545 32.0712 43.5799 32.2119 43.8467C32.5119 43.6523 32.8057 43.4807 33.0788 43.2801C34.229 42.4322 34.9862 41.2907 35.5386 39.99C35.9952 38.9453 36.2749 37.8321 36.3662 36.6957C36.4464 35.8773 36.4761 35.0548 36.4551 34.2328C36.4105 32.9972 36.2365 31.7697 35.9358 30.5704C35.6524 29.4868 35.3669 28.4032 35.0318 27.3341C34.6429 26.0895 34.1473 24.8807 33.5505 23.7213C32.6641 21.9988 31.6431 20.349 30.4969 18.7872C29.8417 17.8952 29.1728 17.0156 28.4901 16.1485C28.1466 15.708 27.7618 15.3027 27.3791 14.8601C28.4057 13.375 29.8244 12.2038 31.4775 11.477C33.0765 10.7816 34.866 10.6567 36.5461 11.1233C36.3289 11.9319 36.12 12.7219 35.8965 13.5056C35.882 13.5573 35.7476 13.6132 35.6752 13.6049C35.2156 13.5268 34.7522 13.473 34.287 13.4436C33.1285 13.4437 32.0037 13.8326 31.0927 14.5479C31.0534 14.5768 31.0141 14.6058 30.9727 14.6306C30.7948 14.7402 30.7989 14.8498 30.9375 15.0049C32.1382 16.3507 33.2033 17.8116 34.1173 19.3662C34.8642 20.6215 35.5655 21.9077 36.2172 23.2106C36.8992 24.5932 37.4438 26.0395 37.8433 27.5284C38.1826 28.7465 38.4826 29.979 38.7619 31.2135C38.8735 31.7592 38.9468 32.312 38.9812 32.8679C39.0704 33.7088 39.1173 34.5535 39.1219 35.3991C39.1122 36.8341 38.8969 38.2603 38.4826 39.6343C37.742 42.2558 36.0243 44.4939 33.6829 45.8878C32.9277 46.3533 32.1271 46.7406 31.2934 47.0438C31.2555 47.0657 31.2132 47.0789 31.1695 47.0824C31.1259 47.086 31.082 47.0799 31.041 47.0644C31.0001 47.049 30.963 47.0247 30.9326 46.9932C30.9022 46.9617 30.8791 46.9239 30.8651 46.8825C30.5837 46.3634 30.2962 45.8485 30.0148 45.3294C29.2328 43.8984 28.4542 42.4715 27.6791 41.0488C27.2136 40.1906 26.7543 39.3282 26.2888 38.4721L23.9097 34.1066C23.7255 33.7633 23.5497 33.4221 23.3511 33.0478Z"
+            fill="white"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_36_7">
+            <rect width="58" height="58" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class="navbar-container__title">Office Watch</div>
+    <div class="navbar-container__links">
+      <DropDown
+        :settings="dropdown1"
+        class="navbar-container__links__link"
+      ></DropDown>
+      <DropDown
+        :settings="dropdown2"
+        class="navbar-container__links__link"
+      ></DropDown>
+    </div>
+    <div class="navbar-container__icons">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        class="bi bi-person-fill navbar-container__icons--1"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+        />
+      </svg>
+    </div>
 
-    <!-- ************************  -->
-    <!--    DESKTOP NAVIGATION -->
-    <!-- ************************** -->
-    <!-- I could have used the same top nav for both and used v-if but I found it easier to just build 2 headers instead of changing the flex rules -->
-    <nav class="nav">
-      <!-- Image shown -->
-      <img src="" alt="" class="nav__logo" />
-
-      <!-- Links rendered from links object. -->
-      <ul class="nav__links">
-        <li
-          class="nav__list-item"
-          v-for="(link, index) in text.links"
-          :key="index"
-        >
-          <a
-            @click.prevent="scrollTo($event)"
-            class="nav__link"
-            :id="'link-' + link.id"
-            >{{ link.text }}</a
-          >
-        </li>
-      </ul>
-
-      <!-- Currently only displaying the phone number with a link to phone app -->
-      <div class="nav__information">
-        <a href="tel:+85561960015" class="nav__phone-number">{{
-          text.number
-        }}</a>
-        <!-- <p class="nav__hours">8:00 to 5:00pm Monday-Thursday</p> -->
-      </div>
-
-      <!-- Social Icons svg -->
-      <!-- In the future I will stop using xlink:href and just build components for the svg's since its so easy -->
-      <ul class="nav__social">
-        <li class="nav__social__icon">
-          <a
-            @click="scrollTo($event)"
-            href="https://www.facebook.com/daikumoto"
-            target="_blank"
-          >
-            <svg class="icon icon__facebook">
-              <use
-                xlink:href="../assets/img/icons/logo-facebook.svg#facebook"
-              ></use></svg
-          ></a>
-        </li>
-        <li class="nav__social__icon">
-          <a href="#">
-            <svg class="icon icon__whatsapp">
-              <use
-                xlink:href="../assets/img/icons/logo-whatsapp.svg#whatsapp"
-              ></use></svg
-          ></a>
-        </li>
-        <li class="nav__social__icon">
-          <a href="#">
-            <svg class="icon icon__telegram">
-              <use
-                xlink:href="../assets/img/icons/telegram.svg#telegram"
-              ></use></svg
-          ></a>
-        </li>
-      </ul>
-    </nav>
+    <button
+      type="button"
+      class="btn btn-outline-primary navbar-container__button"
+    >
+      Find Space
+    </button>
   </div>
 </template>
 
 <script>
+import DropDown from "../components/global/Dropdown.vue";
 export default {
+  components: {
+    DropDown,
+  },
   data() {
     return {
-      mobileDisplay: true,
-      navToggle: false,
-
-      text: {
-        links: [
-          {
-            text: "Home",
-            id: "home",
-          },
-          {
-            text: "About us",
-            id: "about-us",
-          },
-          {
-            text: "Testimonials",
-            id: "testimonials",
-          },
-          {
-            text: "Gallery",
-            id: "gallery",
-          },
-          {
-            text: "Contact us",
-            id: "contact-us",
-          },
-        ],
-        number: "+85561960015",
+      dropdown1: {
+        title: "I’m a Looking for tenants",
+        dropdownItems: ["hello", "hello", "hello"],
       },
-      menuDisplay: true,
+      dropdown2: {
+        title: "I’m Looking for space",
+        dropdownItems: ["hello", "hello", "hello"],
+      },
     };
-  },
-
-  methods: {
-    //Method that scrolls to the location of the link that is pressed
-    scrollTo(event) {
-      this.$emit("scrollTo", event.target.id);
-    },
-    //Toggles if the menu is displayed
-    toggleMenu() {
-      this.navToggle = !this.navToggle;
-    },
   },
 };
 </script>
-<style lang="scss">
-.nav-section {
-  overflow: hidden;
-}
-//MOBILE - Toggle button for the mobile menu
-.mobile-nav {
-  visibility: hidden;
-}
-.nav-top {
-  position: fixed;
-  background-color: rgb(20, 20, 20);
-  box-shadow: 0 2px 2px rgb(22, 22, 22);
-  width: 100%;
-  height: 5rem;
-  padding: 0.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 999;
-}
-.nav-toggle {
-  color: #fff;
-  top: 1.1rem;
-  left: 1.4rem;
-}
-.icon__menu {
-  height: 5rem;
-  width: 5rem;
-}
-.drawer {
-  display: grid;
-  grid-template-rows: 3.5fr 1fr 0.5fr 1fr;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  .icon {
-    height: 5rem;
-    width: 5rem;
-    padding: 1rem;
-    &__telegram {
-      margin-right: 0;
-    }
-  }
-}
-.mobile-nav {
-  &__links {
-    list-style-type: none;
-    font-size: 3rem;
-  }
-  &__link {
-    margin-top: 2.5rem;
-    display: block;
-    cursor: pointer;
-    &:hover {
-      filter: brightness(
-        0.5
-      ); //I really like the filter: brightness effect on the icons
-    }
-  }
-  &__phone-number {
-    font-size: 2.3rem;
-    text-decoration: none;
-    color: var(--color-primary);
-  }
-  &__hours {
-    font-size: 1.6rem;
-  }
-}
 
-//DESKTOP - navigation bar
-.nav {
-  height: 5.5rem;
-  width: 100%;
-  background-color: rgb(22, 22, 22);
-  box-shadow: 0 2px 2px rgb(22, 22, 22);
-  position: fixed;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
+<style lang="scss">
+.navbar-container {
   align-items: center;
-  color: var(--color-primary);
-  transition: all 1s;
+  display: flex;
+  height: 70px;
+  width: 100%;
   font-size: 1.6rem;
-  &__phone-number {
-    text-decoration: none;
-    color: var(--color-primary);
-    transition: color 0.3s;
-    &:hover {
-      color: rgb(223, 223, 223);
+  background: $backgroundColor1;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  &__logo {
+    padding-left: 2rem;
+    &__svg {
+      height: 5rem;
+      width: 5rem;
     }
   }
-  &__logo {
-    height: 5rem;
-    width: 5rem;
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $brandColor1;
     margin-left: 1rem;
   }
-  &__list-item {
-    margin-left: 3rem;
-  }
-  //Styles for the links that will change when on hover/visited
   &__links {
-    text-decoration: none;
-    list-style: none;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    font-size: 1.7rem;
-    cursor: pointer;
+    margin-left: auto;
+    margin-right: 2rem;
+    &__link {
+      margin-right: 1rem;
+    }
   }
-  &__link,
-  &__link:link,
-  &__link:visited {
-    text-decoration: none;
-    color: rgb(223, 223, 223);
+  &__icons {
+    &--1 {
+      height: 30px;
+      width: 30px;
+      fill: $brandColor1;
+      margin-right: 2rem;
+    }
   }
-  &__link:hover {
-    transform: translateX(10px);
-    filter: brightness(0.5);
-    transition: all 0.2s;
-  }
-
-  &__link::after {
-    content: "";
-    display: block;
-    margin: 0 auto;
-    width: 0%;
-    padding-top: 4px;
-    border-bottom: rgb(223, 233, 223) solid 1px;
-    transition: all 0.2s;
-  }
-  &__link:hover::after {
-    padding-top: 8px;
-    width: 70%;
-  }
-
-  //Social Icons
-
-  //box for the social icons
-  &__social {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-  }
-}
-.icon {
-  height: 3.5rem;
-  width: 3.5rem;
-  fill: rgb(223, 223, 223);
-  margin-left: 1rem;
-  transition: all 0.2s ease-in;
-  filter: brightness(0.7);
-  &:hover {
-    filter: brightness(1);
-    transform: scale(1.2);
-  }
-  &__facebook {
-    fill: #4267b2;
-  }
-  &__whatsapp {
-    fill: #25d366;
-  }
-  &__telegram {
-    fill: #0088cc;
+  &__button {
+    font-size: 1.6rem !important;
     margin-right: 4rem;
-  }
-}
-@media only screen and (max-width: 1020px) {
-  .mobile-nav {
-    visibility: visible;
-  }
-  .nav {
-    visibility: hidden;
-  }
-  .icon {
     &:hover {
-      filter: brightness(1);
-      transform: scale(1);
+      color: white !important;
     }
   }
 }
