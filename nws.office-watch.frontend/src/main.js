@@ -5,8 +5,9 @@ import "./assets/styles/main.scss";
 import "bootstrap";
 import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
+import router from './router'
 
-const app = createApp(App);
+const app = createApp(App).use(router);
 
 const link = "http://localhost:3000/graphql";
 // using the ability to split links, you can send data to each link

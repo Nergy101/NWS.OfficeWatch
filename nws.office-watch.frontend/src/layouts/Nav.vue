@@ -80,6 +80,7 @@ export default {
 
 <style lang="scss">
 .navbar-container {
+  z-index: 100;
   align-items: center;
   display: flex;
   height: 70px;

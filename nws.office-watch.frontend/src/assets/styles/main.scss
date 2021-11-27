@@ -4,6 +4,9 @@
   font-family: "Open Sans", "Inter", Avenir, Helvetica, Arial, sans-serif;
   color: $fontColor1;
 }
+html {
+  font-size: 62.5%;
+}
 $theme-colors: (
   "primary": #ff8d1b,
 );

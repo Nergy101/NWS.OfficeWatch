@@ -2,6 +2,7 @@
   --brand-color-1: #ff8d1b;
   --background-color-1: #fff;
   --font-color-1: rgb(36, 36, 36);
+  --font-color-2: rgb(66, 66, 66);
 }
 .dark-theme {
   --brand-color-1: #ff8d1b;
@@ -12,3 +13,4 @@
 $brandColor1: var(--brand-color-1);
 $backgroundColor1: var(--background-color-1);
 $fontColor1: var(--font-color-1);
+$fontColor2: var(--font-color-2);
