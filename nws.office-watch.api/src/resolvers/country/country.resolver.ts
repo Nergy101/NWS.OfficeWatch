@@ -1,5 +1,6 @@
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
+import { CreateCountryInput } from 'src/model/country/country.inputs';
 import { Country } from 'src/model/country/country.model';
 import { CountryService } from 'src/resolvers/country/country.service';
 
@@ -15,5 +16,10 @@ export class CountryResolver {
   @Query(() => [Country])
   async countries(): Promise<Country[]> {
     return this.countryService.findAll();
+  }
+
+  @Mutation(() => Country, { description: 'Creates posted Country' })
+  async createCountry(@Args('createdCountry') createdCountry: CreateCountryInput) {
+    return this.countryService.create(createdCountry);
   }
 }

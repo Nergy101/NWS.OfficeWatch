@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { CreateOfficeInput } from 'src/model/office/office.inputs';
+import {
+  CreateOfficeInput,
+  UpdateOfficeInput,
+} from 'src/model/office/office.inputs';
 import { Office, OfficeDocument } from 'src/model/office/office.model';
 
 @Injectable()
@@ -12,8 +15,13 @@ export class OfficeService {
   ) {}
 
   create(payload: CreateOfficeInput) {
-    const createdPerson = new this.OfficeModel(payload);
-    return createdPerson.save();
+    const createdOffice = new this.OfficeModel(payload);
+    return createdOffice.save();
+  }
+
+  update(payload: UpdateOfficeInput) {
+    this.OfficeModel.findByIdAndUpdate(payload._id, payload, { new: true }).exec();
+    return this.getById(payload._id);
   }
 
   getById(_id: ObjectId) {

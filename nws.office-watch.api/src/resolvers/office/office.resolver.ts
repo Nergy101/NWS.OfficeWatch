@@ -1,7 +1,7 @@
-import { forwardRef, Inject } from '@nestjs/common';
 import {
   Args,
   ID,
+  Mutation,
   Parent,
   Query,
   ResolveField,
@@ -9,6 +9,11 @@ import {
 } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 import { Address } from 'src/model/address/address.model';
+import { OfficeSpace } from 'src/model/office-space/office-space.model';
+import {
+  CreateOfficeInput,
+  UpdateOfficeInput,
+} from 'src/model/office/office.inputs';
 import { Office } from 'src/model/office/office.model';
 import { User } from 'src/model/user/user.model';
 import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
@@ -30,7 +35,9 @@ export class OfficeResolver {
     return this.officeService.getById(officeId);
   }
 
-  @ResolveField()
+  @ResolveField(() => [OfficeSpace], {
+    description: 'Office spaces in the office',
+  })
   async officeSpaces(@Parent() office: Office) {
     return this.officeSpacesService.findAllByOfficeId(office._id);
   }
@@ -43,5 +50,20 @@ export class OfficeResolver {
   @ResolveField(() => Address, { description: 'Address of the Office' })
   async address(@Parent() office: Office) {
     return this.addressService.getById(office.addressId);
+  }
+
+  @Mutation(() => Office, { description: 'Creates posted office' })
+  async createOffice(@Args('createdOffice') createdOffice: CreateOfficeInput) {
+    return this.officeService.create(createdOffice);
+  }
+
+  @Mutation(() => Office, { description: 'Updates posted office' })
+  async updateOffice(@Args('updatedOffice') updatedOffice: UpdateOfficeInput) {
+    return this.officeService.update(updatedOffice);
+  }
+
+  @Mutation(() => Office, { description: 'Deletes office by posted Id' })
+  async deleteOffice(@Args('officeId', { type: () => ID }) officeId: ObjectId) {
+    return this.officeService.delete(officeId);
   }
 }

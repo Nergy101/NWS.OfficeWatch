@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
+import { CreateCountryInput } from 'src/model/country/country.inputs';
 import { Country, CountryDocument } from 'src/model/country/country.model';
 
 @Injectable()
@@ -20,6 +21,11 @@ export class CountryService {
     }
 
     return this.countryModel.find().exec();
+  }
+
+  create(payload: CreateCountryInput){
+    const createdCountry = new this.countryModel(payload);
+    return createdCountry.save();
   }
 
   delete(_id: ObjectId) {

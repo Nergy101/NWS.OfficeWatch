@@ -37,7 +37,7 @@ import { AppSettings } from 'src/keys/appsettings';
     // AddressModule,
     // OfficeModule,
     // UserModule,
-    MongooseModule.forRoot(AppSettings.mongoUriDev),
+    MongooseModule.forRoot('mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
     MongooseModule.forFeature([
       { name: Address.name, schema: AddressSchema },
       { name: Country.name, schema: CountrySchema },

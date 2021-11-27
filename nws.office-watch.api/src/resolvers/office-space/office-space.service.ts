@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { CreateOfficeSpaceInput } from 'src/model/office-space/office-space.inputs';
+import {
+  CreateOfficeSpaceInput,
+  UpdateOfficeSpaceInput,
+} from 'src/model/office-space/office-space.inputs';
 import {
   OfficeSpace,
   OfficeSpaceDocument,
@@ -19,6 +22,13 @@ export class OfficeSpaceService {
     return createdPerson.save();
   }
 
+  update(payload: UpdateOfficeSpaceInput) {
+    this.OfficeSpaceModel.findByIdAndUpdate(payload._id, payload, {
+      new: true,
+    }).exec();
+    return this.getById(payload._id);
+  }
+
   getById(_id: ObjectId) {
     return this.OfficeSpaceModel.findById(_id).exec();
   }
@@ -31,7 +41,7 @@ export class OfficeSpaceService {
     return this.OfficeSpaceModel.find().exec();
   }
 
-  findAllByOfficeId(officeId: ObjectId){
+  findAllByOfficeId(officeId: ObjectId) {
     return this.OfficeSpaceModel.find({ officeId }).exec();
   }
 

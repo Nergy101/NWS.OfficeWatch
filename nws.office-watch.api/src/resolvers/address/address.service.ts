@@ -12,8 +12,8 @@ export class AddressService {
   ) {}
 
   create(payload: CreateAddressInput) {
-    const createdPerson = new this.addressModel(payload);
-    return createdPerson.save();
+    const createdAddress = new this.addressModel(payload);
+    return createdAddress.save();
   }
 
   getById(_id: ObjectId) {
