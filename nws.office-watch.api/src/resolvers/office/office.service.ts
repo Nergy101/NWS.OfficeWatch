@@ -11,32 +11,30 @@ import { Office, OfficeDocument } from 'src/model/office/office.model';
 export class OfficeService {
   constructor(
     @InjectModel(Office.name)
-    private OfficeModel: Model<OfficeDocument>,
+    private officeModel: Model<OfficeDocument>,
   ) {}
 
-  create(payload: CreateOfficeInput) {
-    const createdOffice = new this.OfficeModel(payload);
+  create(payload: CreateOfficeInput): Promise<OfficeDocument> {
+    const createdOffice = new this.officeModel(payload);
     return createdOffice.save();
   }
 
-  update(payload: UpdateOfficeInput) {
-    this.OfficeModel.findByIdAndUpdate(payload._id, payload, { new: true }).exec();
+  update(payload: UpdateOfficeInput): Promise<OfficeDocument | null> {
+    this.officeModel
+      .findByIdAndUpdate(payload._id, payload, { new: true })
+      .exec();
     return this.getById(payload._id);
   }
 
-  getById(_id: ObjectId) {
-    return this.OfficeModel.findById(_id).exec();
+  getById(_id: ObjectId): Promise<OfficeDocument | null> {
+    return this.officeModel.findById(_id).exec();
   }
 
-  findAll(booked?: boolean) {
-    if (booked != null) {
-      return this.OfficeModel.find({ booked }).exec();
-    }
-
-    return this.OfficeModel.find().exec();
+  findAll(): Promise<OfficeDocument[]> {
+    return this.officeModel.find().exec();
   }
 
-  delete(_id: ObjectId) {
-    return this.OfficeModel.findByIdAndDelete(_id).exec();
+  delete(_id: ObjectId): Promise<OfficeDocument | null> {
+    return this.officeModel.findByIdAndDelete(_id).exec();
   }
 }

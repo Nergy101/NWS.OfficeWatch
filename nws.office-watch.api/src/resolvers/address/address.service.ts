@@ -11,16 +11,20 @@ export class AddressService {
     private addressModel: Model<AddressDocument>,
   ) {}
 
-  create(payload: CreateAddressInput) {
+  create(payload: CreateAddressInput): Promise<AddressDocument> {
     const createdAddress = new this.addressModel(payload);
     return createdAddress.save();
   }
 
-  getById(_id: ObjectId) {
+  getById(_id: ObjectId): Promise<AddressDocument | null> {
     return this.addressModel.findById(_id).exec();
   }
 
-  delete(_id: ObjectId) {
+  getAll(): Promise<AddressDocument[]> {
+    return this.addressModel.find().exec();
+  }
+
+  delete(_id: ObjectId): Promise<AddressDocument | null> {
     return this.addressModel.findByIdAndDelete(_id).exec();
   }
 }

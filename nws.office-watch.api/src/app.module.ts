@@ -1,11 +1,6 @@
-import { UserModule } from './modules/user.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { OfficeModule } from './modules/office.module';
-import { AddressModule } from './modules/address.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Address, AddressSchema } from './model/address/address.model';
 import { Country, CountrySchema } from './model/country/country.model';
@@ -31,13 +26,14 @@ import { OfficeService } from './resolvers/office/office.service';
 import { UserService } from './resolvers/user/user.service';
 import { ReservationService } from './resolvers/reservation/reservation.service';
 import { OfficeSpaceService } from './resolvers/office-space/office-space.service';
-import { AppSettings } from 'src/keys/appsettings';
 @Module({
   imports: [
     // AddressModule,
     // OfficeModule,
     // UserModule,
-    MongooseModule.forRoot('mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    MongooseModule.forRoot(
+      'mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    ),
     MongooseModule.forFeature([
       { name: Address.name, schema: AddressSchema },
       { name: Country.name, schema: CountrySchema },

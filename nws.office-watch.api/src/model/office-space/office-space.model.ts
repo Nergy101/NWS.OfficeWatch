@@ -8,19 +8,19 @@ import { Schema as MongoSchema } from 'mongoose';
 @Schema()
 @ObjectType({ description: 'An office-space entity' })
 export class OfficeSpace {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   _id: ObjectId;
 
   @Prop()
-  @Field((type) => String)
+  @Field((_type) => String)
   name: string;
 
   @Prop()
-  @Field((type) => Float)
+  @Field((_type) => Float)
   rating: number;
 
   @Prop()
-  @Field((type) => Int)
+  @Field((_type) => Int)
   forAmountOfPeople: number;
 
   @Prop()
@@ -32,7 +32,7 @@ export class OfficeSpace {
   availableUntil: Date;
 
   @Prop()
-  @Field((type) => Float, { nullable: true })
+  @Field((_type) => Float, { nullable: true })
   price?: number;
 
   @Prop()
@@ -40,11 +40,11 @@ export class OfficeSpace {
   booked: boolean;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Office })
-  @Field((type) => ID)
+  @Field((_type) => ID)
   officeId: ObjectId;
 
   @Prop()
-  @Field((type) => [Reservation], { nullable: true })
+  @Field((_type) => [Reservation], { nullable: true })
   reservations?: Reservation[];
 }
 

@@ -1,4 +1,4 @@
-import { ObjectId, Schema as MongooseSchema } from 'mongoose';
+import { ObjectId } from 'mongoose';
 import { InputType, Field, ID } from '@nestjs/graphql';
 
 @InputType()

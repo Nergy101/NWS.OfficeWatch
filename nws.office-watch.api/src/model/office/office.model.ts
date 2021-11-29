@@ -9,7 +9,7 @@ import { Schema as MongoSchema } from 'mongoose';
 @Schema()
 @ObjectType({ description: 'An office entity' })
 export class Office {
-  @Field((type) => ID, { description: 'Office GUID' })
+  @Field((_type) => ID, { description: 'Office GUID' })
   _id: ObjectId;
 
   @Prop()
@@ -21,15 +21,20 @@ export class Office {
   createdAt: Date;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => User.name })
-  @Field((type) => ID,  { description: 'User GUID' })
+  @Field((_type) => ID, { description: 'User GUID' })
   creatorId: ObjectId;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Address.name })
-  @Field((type) => ID, { description: 'Address GUID' })
+  @Field((_type) => ID, { description: 'Address GUID' })
   addressId: ObjectId;
 
-  @Prop([{ type: MongoSchema.Types.ObjectId, ref: () => OfficeSpace.name }])
-  @Field((type) => [ID], { nullable: true, description: 'GUIDs of the office-spaces in the office' })
+  @Prop([
+    { type: MongoSchema.Types.ObjectId, ref: (): string => OfficeSpace.name },
+  ])
+  @Field((_type): typeof ID[] => [ID], {
+    nullable: true,
+    description: 'GUIDs of the office-spaces in the office',
+  })
   officeSpaceIds?: [MongoSchema.Types.ObjectId];
 }
 
