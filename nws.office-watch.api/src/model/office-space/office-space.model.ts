@@ -4,6 +4,7 @@ import { ObjectId } from 'mongoose';
 import { Office } from '../office/office.model';
 import { Reservation } from '../reservation/reservation.model';
 import { Schema as MongoSchema } from 'mongoose';
+import { Rating, RatingSchema } from './rating.model';
 
 @Schema()
 @ObjectType({ description: 'An office-space entity' })
@@ -15,21 +16,21 @@ export class OfficeSpace {
   @Field((_type) => String)
   name: string;
 
-  @Prop()
-  @Field((_type) => Float)
-  rating: number;
+  @Prop({ type: RatingSchema })
+  @Field((_type) => Rating)
+  rating: Rating;
 
   @Prop()
   @Field((_type) => Int)
   forAmountOfPeople: number;
 
   @Prop()
-  @Field()
-  availableFrom: Date;
+  @Field((_type) => Date, { description: 'Date from when the office space will be listed for reservations' })
+  availableFromUtc: Date;
 
   @Prop()
-  @Field()
-  availableUntil: Date;
+  @Field((_type) => Date, { description: 'Date until the office space will be listed for reservations' })
+  availableUntilUtc: Date;
 
   @Prop()
   @Field((_type) => Float, { nullable: true })

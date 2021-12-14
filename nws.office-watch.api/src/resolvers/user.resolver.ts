@@ -1,5 +1,5 @@
-import { Office } from '../../model/office/office.model';
-import { OfficeService } from '../office/office.service';
+import { Office } from '../model/office/office.model';
+import { OfficeService } from '../services/repositories/office.service';
 import {
   Args,
   ID,
@@ -10,11 +10,11 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { User, UserDocument } from 'src/model/user/user.model';
-import { UserService } from 'src/resolvers/user/user.service';
-import { ReservationService } from '../reservation/reservation.service';
+import { UserService } from 'src/services/repositories/user.service';
 import { ObjectId } from 'mongoose';
 import { CreateUserInput } from 'src/model/user/user.inputs';
 import { Reservation } from 'src/model/reservation/reservation.model';
+import { ReservationService } from 'src/services/repositories/reservation.service';
 
 @Resolver(() => User)
 export class UserResolver {

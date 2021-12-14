@@ -14,18 +14,19 @@ import {
   ReservationSchema,
 } from './model/reservation/reservation.model';
 import { User, UserSchema } from './model/user/user.model';
-import { AddressResolver } from './resolvers/address/address.resolver';
-import { CountryResolver } from './resolvers/country/country.resolver';
-import { OfficeSpaceResolver } from './resolvers/office-space/office-space.resolver';
-import { OfficeResolver } from './resolvers/office/office.resolver';
-import { ReservationResolver } from './resolvers/reservation/reservation.resolver';
-import { UserResolver } from './resolvers/user/user.resolver';
-import { AddressService } from './resolvers/address/address.service';
-import { CountryService } from './resolvers/country/country.service';
-import { OfficeService } from './resolvers/office/office.service';
-import { UserService } from './resolvers/user/user.service';
-import { ReservationService } from './resolvers/reservation/reservation.service';
-import { OfficeSpaceService } from './resolvers/office-space/office-space.service';
+import { AddressResolver } from './resolvers/address.resolver';
+import { CountryResolver } from './resolvers/country.resolver';
+import { OfficeSpaceResolver } from './resolvers/office-space.resolver';
+import { OfficeResolver } from './resolvers/office.resolver';
+import { ReservationResolver } from './resolvers/reservation.resolver';
+import { UserResolver } from './resolvers/user.resolver';
+import { AddressService } from './services/repositories/address.service';
+import { CountryService } from './services/repositories/country.service';
+import { OfficeService } from './services/repositories/office.service';
+import { UserService } from './services/repositories/user.service';
+import { OfficeSpaceService } from './services/repositories/office-space.service';
+import { ReservationService } from './services/repositories/reservation.service';
+import { DateRangeService } from './services/shared/daterange-service';
 @Module({
   imports: [
     // AddressModule,
@@ -56,6 +57,7 @@ import { OfficeSpaceService } from './resolvers/office-space/office-space.servic
     OfficeService,
     OfficeSpaceService,
     ReservationService,
+    DateRangeService,
     UserService,
     AddressResolver,
     CountryResolver,

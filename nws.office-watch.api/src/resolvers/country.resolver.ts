@@ -2,7 +2,7 @@ import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 import { CreateCountryInput } from 'src/model/country/country.inputs';
 import { Country, CountryDocument } from 'src/model/country/country.model';
-import { CountryService } from 'src/resolvers/country/country.service';
+import { CountryService } from 'src/services/repositories/country.service';
 
 @Resolver(() => Country)
 export class CountryResolver {

@@ -39,12 +39,12 @@ export class User {
   @Field({ nullable: true })
   lockedUntil?: Date;
 
-  @Prop({ type: MongoSchema.Types.ObjectId, ref: (): string => Office.name })
+  @Prop({ type: MongoSchema.Types.ObjectId, ref: (): string => "Office" })
   @Field((_type) => ID, { nullable: true })
   officeId?: ObjectId;
 
   @Prop([
-    { type: MongoSchema.Types.ObjectId, ref: (): string => Reservation.name },
+    { type: MongoSchema.Types.ObjectId, ref: (): string => "Reservation" },
   ])
   @Field((_type) => [Reservation], { nullable: true })
   reservations?: Reservation[];

@@ -18,9 +18,9 @@ import {
   ReservationDocument,
 } from 'src/model/reservation/reservation.model';
 import { User, UserDocument } from 'src/model/user/user.model';
-import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
-import { ReservationService } from 'src/resolvers/reservation/reservation.service';
-import { UserService } from 'src/resolvers/user/user.service';
+import { OfficeSpaceService } from 'src/services/repositories/office-space.service';
+import { ReservationService } from 'src/services/repositories/reservation.service';
+import { UserService } from 'src/services/repositories/user.service';
 
 @Resolver(() => Reservation)
 export class ReservationResolver {

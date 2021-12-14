@@ -11,8 +11,8 @@ import { ObjectId } from 'mongoose';
 import { CreateAddressInput } from 'src/model/address/address.inputs';
 import { Address, AddressDocument } from 'src/model/address/address.model';
 import { Country, CountryDocument } from 'src/model/country/country.model';
-import { CountryService } from 'src/resolvers/country/country.service';
-import { AddressService } from './address.service';
+import { AddressService } from 'src/services/repositories/address.service';
+import { CountryService } from 'src/services/repositories/country.service';
 
 @Resolver(() => Address)
 export class AddressResolver {

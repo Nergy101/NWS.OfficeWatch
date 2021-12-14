@@ -17,6 +17,14 @@ export class Reservation {
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => User })
   @Field((_type) => ID)
   reservedForId: ObjectId;
+
+  @Prop()
+  @Field()
+  fromDateUtc: Date;
+
+  @Prop()
+  @Field()
+  toDateUtc: Date;
 }
 
 export type ReservationDocument = Reservation & Document;

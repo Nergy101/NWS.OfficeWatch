@@ -17,10 +17,12 @@ import {
   OfficeSpaceDocument,
 } from 'src/model/office-space/office-space.model';
 import { Office, OfficeDocument } from 'src/model/office/office.model';
+import { DateRange } from 'src/model/reservation/daterange.model';
 import { Reservation } from 'src/model/reservation/reservation.model';
-import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
-import { OfficeService } from 'src/resolvers/office/office.service';
-import { ReservationService } from 'src/resolvers/reservation/reservation.service';
+import { DateRangeService } from 'src/services/shared/daterange-service';
+import { OfficeSpaceService } from 'src/services/repositories/office-space.service';
+import { OfficeService } from 'src/services/repositories/office.service';
+import { ReservationService } from 'src/services/repositories/reservation.service';
 
 @Resolver(() => OfficeSpace)
 export class OfficeSpaceResolver {
@@ -28,6 +30,7 @@ export class OfficeSpaceResolver {
     private officeService: OfficeService,
     private officeSpacesService: OfficeSpaceService,
     private reservationService: ReservationService,
+    private dateRangeService: DateRangeService,
   ) {}
 
   @Query(() => OfficeSpace)
@@ -56,6 +59,15 @@ export class OfficeSpaceResolver {
     @Parent() officeSpace: OfficeSpace,
   ): Promise<Reservation[]> {
     return this.reservationService.findAllByOfficeSpaceId(officeSpace._id);
+  }
+
+  @ResolveField(() => [DateRange], {
+    description: 'Existing reservation dateranges of the Office space',
+  })
+  async unavailableDatesForOfficeSpaceId(
+    @Parent() officeSpace: OfficeSpace,
+  ): Promise<DateRange[]> {
+    return this.dateRangeService.getNonAvailableDateRanges(officeSpace._id);
   }
 
   @Mutation(() => OfficeSpace, { description: 'Creates posted office-space' })

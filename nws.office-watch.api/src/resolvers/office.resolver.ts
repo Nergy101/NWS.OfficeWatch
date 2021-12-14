@@ -19,10 +19,10 @@ import {
 } from 'src/model/office/office.inputs';
 import { Office, OfficeDocument } from 'src/model/office/office.model';
 import { User, UserDocument } from 'src/model/user/user.model';
-import { OfficeSpaceService } from 'src/resolvers/office-space/office-space.service';
-import { OfficeService } from 'src/resolvers/office/office.service';
-import { UserService } from 'src/resolvers/user/user.service';
-import { AddressService } from '../address/address.service';
+import { AddressService } from 'src/services/repositories/address.service';
+import { OfficeSpaceService } from 'src/services/repositories/office-space.service';
+import { OfficeService } from 'src/services/repositories/office.service';
+import { UserService } from 'src/services/repositories/user.service';
 
 @Resolver(() => Office)
 export class OfficeResolver {
