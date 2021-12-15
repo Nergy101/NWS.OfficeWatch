@@ -1,5 +1,7 @@
 import { Field, Float, ID, InputType, Int } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
+import { CreateRatingInput, UpdateRatingInput } from './rating.inputs';
+import { Rating } from './rating.model';
 
 @InputType({ description: 'An office-space entity' })
 export class CreateOfficeSpaceInput {
@@ -9,8 +11,8 @@ export class CreateOfficeSpaceInput {
   @Field((type) => String)
   name: string;
 
-  @Field((type) => Float)
-  rating: number;
+  @Field((type) => CreateRatingInput)
+  rating: CreateRatingInput;
 
   @Field((type) => Int)
   forAmountOfPeople: number;
@@ -36,8 +38,8 @@ export class UpdateOfficeSpaceInput {
   @Field((type) => String)
   name: string;
 
-  @Field((type) => Float)
-  rating: number;
+  @Field((type) => UpdateRatingInput)
+  rating: UpdateRatingInput;
 
   @Field((type) => Int)
   forAmountOfPeople: number;

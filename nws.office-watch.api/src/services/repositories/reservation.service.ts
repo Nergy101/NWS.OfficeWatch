@@ -14,24 +14,26 @@ export class ReservationService {
     private ReservationModel: Model<ReservationDocument>,
   ) {}
 
-  create(payload: CreateReservationInput) {
-    const createdPerson = new this.ReservationModel(payload);
-    return createdPerson.save();
+  create(payload: CreateReservationInput): Promise<ReservationDocument> {
+    const createdReservation = new this.ReservationModel(payload);
+    return createdReservation.save();
   }
 
-  getById(_id: ObjectId) {
+  getById(_id: ObjectId): Promise<ReservationDocument | null> {
     return this.ReservationModel.findById(_id).exec();
   }
 
-  findAllByOfficeSpaceId(officeSpaceId: ObjectId) {
+  findAllByOfficeSpaceId(
+    officeSpaceId: ObjectId,
+  ): Promise<ReservationDocument[]> {
     return this.ReservationModel.find({ officeSpaceId }).exec();
   }
 
-  findAllByUserId(userId: ObjectId) {
+  findAllByUserId(userId: ObjectId): Promise<ReservationDocument[]> {
     return this.ReservationModel.find({ reservedForId: userId }).exec();
   }
 
-  delete(_id: ObjectId) {
+  delete(_id: ObjectId): Promise<ReservationDocument | null> {
     return this.ReservationModel.findByIdAndDelete(_id).exec();
   }
 }

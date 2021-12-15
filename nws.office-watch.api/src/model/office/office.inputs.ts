@@ -12,26 +12,26 @@ export class CreateOfficeInput {
   })
   createdAt: Date;
 
-  @Field((type) => ID, {
+  @Field((_type) => ID, {
     description: 'userId of the user that created this Office',
   })
   creatorId: string;
 
-  @Field((type) => ID)
+  @Field((_type) => ID)
   addressId: string;
 }
 
 @InputType()
 export class UpdateOfficeInput {
-  @Field((type) => ID, { description: 'Office GUID' })
+  @Field((_type) => ID, { description: 'Office GUID' })
   _id: ObjectId;
 
   @Field({ description: 'Company name' })
   name: string;
 
-  @Field((type) => ID)
+  @Field((_type) => ID)
   creatorId: ObjectId;
 
-  @Field((type) => ID)
+  @Field((_type) => ID)
   addressId: ObjectId;
 }

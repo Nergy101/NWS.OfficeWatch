@@ -11,11 +11,11 @@ export class CountryService {
     private countryModel: Model<CountryDocument>,
   ) {}
 
-  getById(_id: ObjectId) {
+  getById(_id: ObjectId): Promise<CountryDocument | null> {
     return this.countryModel.findById(_id).exec();
   }
 
-  findAll(booked?: boolean) {
+  findAll(booked?: boolean): Promise<CountryDocument[]> {
     if (booked != null) {
       return this.countryModel.find({ booked }).exec();
     }
@@ -23,12 +23,12 @@ export class CountryService {
     return this.countryModel.find().exec();
   }
 
-  create(payload: CreateCountryInput){
+  create(payload: CreateCountryInput): Promise<CountryDocument> {
     const createdCountry = new this.countryModel(payload);
     return createdCountry.save();
   }
 
-  delete(_id: ObjectId) {
+  delete(_id: ObjectId): Promise<CountryDocument | null> {
     return this.countryModel.findByIdAndDelete(_id).exec();
   }
 }

@@ -17,23 +17,24 @@ export class OfficeSpaceService {
     private OfficeSpaceModel: Model<OfficeSpaceDocument>,
   ) {}
 
-  create(payload: CreateOfficeSpaceInput) {
+  create(payload: CreateOfficeSpaceInput): Promise<OfficeSpaceDocument> {
     const createdPerson = new this.OfficeSpaceModel(payload);
     return createdPerson.save();
   }
 
-  update(payload: UpdateOfficeSpaceInput) {
+  update(payload: UpdateOfficeSpaceInput): Promise<OfficeSpaceDocument | null> {
     this.OfficeSpaceModel.findByIdAndUpdate(payload._id, payload, {
       new: true,
     }).exec();
+
     return this.getById(payload._id);
   }
 
-  getById(_id: ObjectId) {
+  getById(_id: ObjectId): Promise<OfficeSpaceDocument | null> {
     return this.OfficeSpaceModel.findById(_id).exec();
   }
 
-  findAll(booked?: boolean) {
+  findAll(booked?: boolean): Promise<OfficeSpaceDocument[]> {
     if (booked != null) {
       return this.OfficeSpaceModel.find({ booked }).exec();
     }
@@ -41,11 +42,11 @@ export class OfficeSpaceService {
     return this.OfficeSpaceModel.find().exec();
   }
 
-  findAllByOfficeId(officeId: ObjectId) {
+  findAllByOfficeId(officeId: ObjectId): Promise<OfficeSpaceDocument[]> {
     return this.OfficeSpaceModel.find({ officeId }).exec();
   }
 
-  delete(_id: ObjectId) {
+  delete(_id: ObjectId): Promise<OfficeSpaceDocument | null> {
     return this.OfficeSpaceModel.findByIdAndDelete(_id).exec();
   }
 }

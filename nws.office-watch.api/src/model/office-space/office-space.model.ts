@@ -4,35 +4,36 @@ import { ObjectId } from 'mongoose';
 import { Office } from '../office/office.model';
 import { Reservation } from '../reservation/reservation.model';
 import { Schema as MongoSchema } from 'mongoose';
+import { Rating, RatingSchema } from './rating.model';
 
 @Schema()
 @ObjectType({ description: 'An office-space entity' })
 export class OfficeSpace {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   _id: ObjectId;
 
   @Prop()
-  @Field((type) => String)
+  @Field((_type) => String)
   name: string;
 
-  @Prop()
-  @Field((type) => Float)
-  rating: number;
+  @Prop({ type: RatingSchema })
+  @Field((_type) => Rating)
+  rating: Rating;
 
   @Prop()
-  @Field((type) => Int)
+  @Field((_type) => Int)
   forAmountOfPeople: number;
 
   @Prop()
-  @Field()
-  availableFrom: Date;
+  @Field((_type) => Date, { description: 'Date from when the office space will be listed for reservations' })
+  availableFromUtc: Date;
 
   @Prop()
-  @Field()
-  availableUntil: Date;
+  @Field((_type) => Date, { description: 'Date until the office space will be listed for reservations' })
+  availableUntilUtc: Date;
 
   @Prop()
-  @Field((type) => Float, { nullable: true })
+  @Field((_type) => Float, { nullable: true })
   price?: number;
 
   @Prop()
@@ -40,11 +41,11 @@ export class OfficeSpace {
   booked: boolean;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Office })
-  @Field((type) => ID)
+  @Field((_type) => ID)
   officeId: ObjectId;
 
   @Prop()
-  @Field((type) => [Reservation], { nullable: true })
+  @Field((_type) => [Reservation], { nullable: true })
   reservations?: Reservation[];
 }
 

@@ -1,11 +1,6 @@
-import { UserModule } from './modules/user.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { OfficeModule } from './modules/office.module';
-import { AddressModule } from './modules/address.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Address, AddressSchema } from './model/address/address.model';
 import { Country, CountrySchema } from './model/country/country.model';
@@ -19,25 +14,27 @@ import {
   ReservationSchema,
 } from './model/reservation/reservation.model';
 import { User, UserSchema } from './model/user/user.model';
-import { AddressResolver } from './resolvers/address/address.resolver';
-import { CountryResolver } from './resolvers/country/country.resolver';
-import { OfficeSpaceResolver } from './resolvers/office-space/office-space.resolver';
-import { OfficeResolver } from './resolvers/office/office.resolver';
-import { ReservationResolver } from './resolvers/reservation/reservation.resolver';
-import { UserResolver } from './resolvers/user/user.resolver';
-import { AddressService } from './resolvers/address/address.service';
-import { CountryService } from './resolvers/country/country.service';
-import { OfficeService } from './resolvers/office/office.service';
-import { UserService } from './resolvers/user/user.service';
-import { ReservationService } from './resolvers/reservation/reservation.service';
-import { OfficeSpaceService } from './resolvers/office-space/office-space.service';
-import { AppSettings } from 'src/keys/appsettings';
+import { AddressResolver } from './resolvers/address.resolver';
+import { CountryResolver } from './resolvers/country.resolver';
+import { OfficeSpaceResolver } from './resolvers/office-space.resolver';
+import { OfficeResolver } from './resolvers/office.resolver';
+import { ReservationResolver } from './resolvers/reservation.resolver';
+import { UserResolver } from './resolvers/user.resolver';
+import { AddressService } from './services/repositories/address.service';
+import { CountryService } from './services/repositories/country.service';
+import { OfficeService } from './services/repositories/office.service';
+import { UserService } from './services/repositories/user.service';
+import { OfficeSpaceService } from './services/repositories/office-space.service';
+import { ReservationService } from './services/repositories/reservation.service';
+import { DateRangeService } from './services/shared/daterange-service';
 @Module({
   imports: [
     // AddressModule,
     // OfficeModule,
     // UserModule,
-    MongooseModule.forRoot('mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    MongooseModule.forRoot(
+      'mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    ),
     MongooseModule.forFeature([
       { name: Address.name, schema: AddressSchema },
       { name: Country.name, schema: CountrySchema },
@@ -60,6 +57,7 @@ import { AppSettings } from 'src/keys/appsettings';
     OfficeService,
     OfficeSpaceService,
     ReservationService,
+    DateRangeService,
     UserService,
     AddressResolver,
     CountryResolver,

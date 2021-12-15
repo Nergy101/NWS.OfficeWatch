@@ -5,7 +5,7 @@ import { ObjectId } from 'mongoose';
 @Schema()
 @ObjectType({ description: 'A country entity' })
 export class Country {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   _id: ObjectId;
 
   @Prop()

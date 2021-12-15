@@ -7,16 +7,24 @@ import { User } from '../user/user.model';
 @Schema()
 @ObjectType({ description: 'A reservation entity' })
 export class Reservation {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   _id: ObjectId;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Reservation })
-  @Field((type) => ID)
+  @Field((_type) => ID)
   officeSpaceId: ObjectId;
 
   @Prop({ type: MongoSchema.Types.ObjectId, ref: () => User })
-  @Field((type) => ID)
+  @Field((_type) => ID)
   reservedForId: ObjectId;
+
+  @Prop()
+  @Field()
+  fromDateUtc: Date;
+
+  @Prop()
+  @Field()
+  toDateUtc: Date;
 }
 
 export type ReservationDocument = Reservation & Document;

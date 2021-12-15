@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Document, ObjectId, Schema as MongooseSchema } from 'mongoose';
+import { Document, ObjectId } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Office } from '../office/office.model';
 import { Reservation } from '../reservation/reservation.model';
@@ -8,7 +8,7 @@ import { Schema as MongoSchema } from 'mongoose';
 @Schema()
 @ObjectType({ description: 'A user entity' })
 export class User {
-  @Field((type) => ID)
+  @Field((_type) => ID)
   _id: ObjectId;
 
   @Prop()
@@ -39,12 +39,14 @@ export class User {
   @Field({ nullable: true })
   lockedUntil?: Date;
 
-  @Prop({ type: MongoSchema.Types.ObjectId, ref: () => Office })
-  @Field((type) => ID, { nullable: true })
+  @Prop({ type: MongoSchema.Types.ObjectId, ref: (): string => "Office" })
+  @Field((_type) => ID, { nullable: true })
   officeId?: ObjectId;
 
-  @Prop([{ type: MongoSchema.Types.ObjectId, ref: () => Reservation }])
-  @Field((type) => [Reservation], { nullable: true })
+  @Prop([
+    { type: MongoSchema.Types.ObjectId, ref: (): string => "Reservation" },
+  ])
+  @Field((_type) => [Reservation], { nullable: true })
   reservations?: Reservation[];
 }
 
