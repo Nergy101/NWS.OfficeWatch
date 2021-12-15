@@ -10,7 +10,10 @@
             We'll help you find your next working space
           </p>
         </div>
-        <SearchDialog class="segment-1__search"></SearchDialog>
+        <SearchDialog
+          @submit="searchOfficeSpaces()"
+          class="segment-1__search"
+        ></SearchDialog>
       </div>
       <Slider
         class="segment-1__slider"

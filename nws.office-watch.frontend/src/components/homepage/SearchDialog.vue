@@ -128,7 +128,11 @@
               />
             </div>
           </div>
-          <button type="submit" class="btn btn-primary col-2 form-button">
+          <button
+            @click="searchOfficeSpaces()"
+            type="submit"
+            class="btn btn-primary col-2 form-button"
+          >
             Submit
           </button>
           <!-- SEARCH BUTTONS -->
@@ -151,6 +155,16 @@ export default {
     BIconHouseFill,
     BIconCurrencyDollar,
     BIconDashSquareFill,
+  },
+  methods: {
+    searchOfficeSpaces() {
+      this.$router.push({
+        name: "OfficeSpaces",
+        params: {
+          search: "",
+        },
+      });
+    },
   },
 };
 </script>
