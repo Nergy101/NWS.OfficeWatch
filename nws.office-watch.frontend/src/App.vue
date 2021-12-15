@@ -16,8 +16,9 @@ export default {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+
   margin-top: 9rem;
+  font-size: 1.6rem;
 }
 
 #nav {

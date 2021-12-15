@@ -59,7 +59,7 @@ export default {
   }
   &__button {
     font-size: 1.5rem;
-    color: $fontColor1;
+    color: $fontColorPrimary;
     font-weight: 400;
   }
   &__menu {

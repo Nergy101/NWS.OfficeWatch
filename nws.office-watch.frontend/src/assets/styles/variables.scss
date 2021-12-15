@@ -1,16 +1,24 @@
 :root {
   --brand-color-1: #ff8d1b;
   --background-color-1: #fff;
-  --font-color-1: rgb(36, 36, 36);
-  --font-color-2: rgb(66, 66, 66);
+  --background-color-form: #e7e7e7;
+  --font-color-primary: rgb(36, 36, 36);
+  --font-color-primary-lighten-1: rgb(66, 66, 66);
+  --font-color-primary-lighten-2: rgb(116, 116, 116);
+  --font-color-primary-lighten-5: #fff;
+  --font-family: "Open Sans", "Inter", Avenir, Helvetica, Arial, sans-serif;
 }
 .dark-theme {
   --brand-color-1: #ff8d1b;
   --background-color-1: #000;
-  --font-color-1: rgb(231, 231, 231);
+  --font-color-primary: rgb(231, 231, 231);
 }
 
 $brandColor1: var(--brand-color-1);
 $backgroundColor1: var(--background-color-1);
-$fontColor1: var(--font-color-1);
-$fontColor2: var(--font-color-2);
+$fontColorPrimary: var(--font-color-primary);
+$fontColorPrimaryLighten1: var(--font-color-primary-lighten-1);
+$fontColorPrimaryLighten2: var(--font-color-primary-lighten-2);
+$fontColorPrimaryLighten5: var(--font-color-primary-lighten-5);
+$backgroundColorForm: var(--background-color-form);
+$fontFamily: var(--font-family);

@@ -83,7 +83,7 @@ export default {
   z-index: 100;
   align-items: center;
   display: flex;
-  height: 70px;
+  height: 7rem;
   width: 100%;
   font-size: 1.6rem;
   background: $backgroundColor1;
@@ -114,8 +114,8 @@ export default {
   }
   &__icons {
     &--1 {
-      height: 30px;
-      width: 30px;
+      height: 3rem;
+      width: 3rem;
       fill: $brandColor1;
       margin-right: 2rem;
     }

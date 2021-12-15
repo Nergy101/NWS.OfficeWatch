@@ -3,7 +3,7 @@
     <swiper
       class="slider__swiper"
       :spaceBetween="40"
-      :speed="2000"
+      :speed="1500"
       :slides-per-view="1"
       @swiper="onSwiper"
       loop
@@ -15,10 +15,17 @@
     >
       <swiper-slide
         class="slider__slide"
-        v-for="(image, index) in images"
+        v-for="(image, index) in dataset"
         :key="index"
       >
-        <img :src="image.url" class="slider__image" alt="image.name" />
+        <p v-if="title && index % 2">divided</p>
+        <img
+          :src="image.url"
+          class="slider__image"
+          :style="sliderStyle"
+          alt="image.name"
+        />
+        <p v-if="title && !(index % 2)">not divided</p>
       </swiper-slide>
     </swiper>
   </div>
@@ -32,7 +39,7 @@ import SwiperCore, { Autoplay } from "swiper";
 SwiperCore.use([Autoplay]);
 export default {
   name: "App",
-
+  props: ["dataset", "title", "sliderStyle"],
   components: {
     Swiper,
     SwiperSlide,
@@ -42,34 +49,6 @@ export default {
   data() {
     return {
       swiper: null,
-      images: [
-        {
-          name: "office 1",
-          // WHY DOES THE REQUIRE STATEMENT HAVE TO BE IN THE OBJECT??
-          url: require("@/assets/img/Homepage1.jpg"),
-        },
-
-        {
-          name: "office 2",
-          // WHY DOES THE REQUIRE STATEMENT HAVE TO BE IN THE OBJECT??
-          url: require("@/assets/img/Homepage2.jpg"),
-        },
-        {
-          name: "office 3",
-          // WHY DOES THE REQUIRE STATEMENT HAVE TO BE IN THE OBJECT??
-          url: require("@/assets/img/Homepage3.jpg"),
-        },
-        {
-          name: "office 4",
-          // WHY DOES THE REQUIRE STATEMENT HAVE TO BE IN THE OBJECT??
-          url: require("@/assets/img/Homepage4.jpg"),
-        },
-        {
-          name: "office 5",
-          // WHY DOES THE REQUIRE STATEMENT HAVE TO BE IN THE OBJECT??
-          url: require("@/assets/img/Homepage5.jpg"),
-        },
-      ],
     };
   },
 
@@ -92,10 +71,9 @@ export default {
 <style lang="scss">
 .slider {
   &__swiper {
-    width: 600px;
+    height: inherit;
   }
   &__image {
-    height: 550px;
     width: 100%;
     object-fit: cover;
   }
