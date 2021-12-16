@@ -27,7 +27,7 @@ export class OfficeService {
   }
 
   getById(_id: ObjectId): Promise<OfficeDocument | null> {
-    return this.officeModel.findById(_id).exec();
+    return this.officeModel.findById(_id.toString()).exec();
   }
 
   findAll(): Promise<OfficeDocument[]> {

@@ -35,24 +35,24 @@ export class UpdateOfficeSpaceInput {
   @Field((type) => ID)
   _id: ObjectId;
 
-  @Field((type) => String)
-  name: string;
+  @Field((type) => String, {nullable: true})
+  name?: string;
 
-  @Field((type) => UpdateRatingInput)
-  rating: UpdateRatingInput;
+  @Field((type) => UpdateRatingInput, {nullable: true})
+  rating?: UpdateRatingInput;
 
-  @Field((type) => Int)
-  forAmountOfPeople: number;
+  @Field((type) => Int, {nullable: true})
+  forAmountOfPeople?: number;
 
-  @Field()
-  availableFrom: Date;
+  @Field({nullable: true})
+  availableFrom?: Date;
 
-  @Field()
-  availableUntil: Date;
+  @Field({nullable: true})
+  availableUntil?: Date;
 
   @Field((type) => Float, { nullable: true })
   price?: number;
 
-  @Field({ defaultValue: false })
-  booked: boolean;
+  @Field({ defaultValue: false, nullable: true })
+  booked?: boolean;
 }

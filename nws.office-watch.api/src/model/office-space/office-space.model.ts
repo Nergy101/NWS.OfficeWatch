@@ -17,20 +17,27 @@ export class OfficeSpace {
   name: string;
 
   @Prop({ type: RatingSchema })
-  @Field((_type) => Rating)
-  rating: Rating;
+  @Field((_type) => Rating, { nullable: true })
+  rating?: Rating;
 
   @Prop()
   @Field((_type) => Int)
   forAmountOfPeople: number;
 
   @Prop()
-  @Field((_type) => Date, { description: 'Date from when the office space will be listed for reservations' })
-  availableFromUtc: Date;
+  @Field((_type) => Date, {
+    description:
+      'Date from when the office space will be listed for reservations',
+    nullable: true,
+  })
+  availableFromUtc?: Date;
 
   @Prop()
-  @Field((_type) => Date, { description: 'Date until the office space will be listed for reservations' })
-  availableUntilUtc: Date;
+  @Field((_type) => Date, {
+    description: 'Date until the office space will be listed for reservations',
+    nullable: true,
+  })
+  availableUntilUtc?: Date;
 
   @Prop()
   @Field((_type) => Float, { nullable: true })

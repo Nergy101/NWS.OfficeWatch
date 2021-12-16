@@ -1,5 +1,5 @@
 <template>
-  <div class="office-card">
+  <div class="office-card" @click="routeToOfficeSpace()">
     <img
       src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b2ZmaWNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
       alt="office"
@@ -16,6 +16,13 @@
 <script>
 export default {
   props: ["data"],
+  methods: {
+    routeToOfficeSpace() {
+      this.$router.push({
+        name: "OfficeSpace",
+      });
+    },
+  },
 };
 </script>
 

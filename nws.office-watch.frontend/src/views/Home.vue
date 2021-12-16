@@ -34,10 +34,12 @@
 <script>
 import Slider from "../components/global/Slider.vue";
 import SearchDialog from "../components/homepage/SearchDialog.vue";
+import OfficeSpaceDetail from "./OfficeSpaceDetail.vue";
 export default {
   components: {
     Slider,
     SearchDialog,
+    OfficeSpaceDetail
   },
   data() {
     return {
