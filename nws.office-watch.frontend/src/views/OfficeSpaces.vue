@@ -21,7 +21,20 @@ export default {
   },
   data() {
     return {
-      officeSpaces: [{ name: "test" }],
+      officeSpaces: [
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+        { name: "test" },
+      ],
     };
   },
   async mounted() {
@@ -53,12 +66,13 @@ export default {
 <style lang="scss">
 .office-spaces {
   &__cards {
-    margin: 15rem;
+    margin: 5rem;
     display: grid;
-    grid-template-columns: repeat(6, minmax(15rem, 30rem));
-
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 3rem;
     &__card {
-      width: 20rem;
     }
   }
 }

@@ -29,17 +29,19 @@ export default {
 <style lang="scss">
 .office-card {
   display: flex;
-  max-width: 500px;
+  max-width: 25em;
   background: rgb(162, 162, 175);
-  height: 100%;
-  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 1em;
   &__img {
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: inherit;
+    border-bottom-left-radius: 0em;
+    border-bottom-right-radius: 0em;
   }
 }
 </style>
