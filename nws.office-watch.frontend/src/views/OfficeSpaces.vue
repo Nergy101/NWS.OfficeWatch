@@ -41,7 +41,7 @@ export default {
     let res = await apolloClient.query({
       query: gql`
         query {
-          officeSpaces {
+          officeSpaces(name: "Bamboo") {
             name
             office {
               address {

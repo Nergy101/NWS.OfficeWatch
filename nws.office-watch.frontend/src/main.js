@@ -28,6 +28,25 @@ const apolloProvider = createApolloProvider({
 export default apolloClient;
 app.use(apolloProvider);
 
+// GLOBAL CHART STYLES
+const r = document.querySelector(":root");
+let rs = getComputedStyle(r);
+let chartColors = [
+  "--chart-color-1",
+  "--chart-color-2",
+  "--chart-color-3",
+  "--chart-color-4",
+  "--chart-color-5",
+  "--chart-color-6",
+];
+let fontFamily = rs.getPropertyValue("--font-family").trim();
+let colors = chartColors.map((color) => {
+  return `${rs.getPropertyValue(color).trim()}`;
+});
+window.Apex.colors = colors;
+window.Apex.chart = {
+  fontFamily: fontFamily,
+};
 // Add ApexCharts
 app.use(VueApexCharts);
 

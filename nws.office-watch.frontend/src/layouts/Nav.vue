@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-container">
-    <div class="navbar-container__logo">
+    <div class="navbar-container__logo" @click="$router.push('/')">
       <svg
         viewBox="0 0 58 58"
         class="navbar-container__logo__svg"
