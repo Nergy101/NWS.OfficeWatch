@@ -35,3 +35,44 @@ This is not only better for your wallet- it's also better for the environment an
 
 We use a GraphQL API so the minimal amount of data is sent across the wire at all times.
 There wont be any 'over'- or 'under'-fetching as we can request exactly what we want in a single request for displaying.
+
+## Resources
+
+### Used for Learning
+
+[Tutorial On Backend Set up](https://dev.to/lotfi/three-in-one-code-first-nestjs-graphql-mongoose-30ie "https://dev.to/lotfi/three-in-one-code-first-nestjs-graphql-mongoose-30ie")
+
+### Tools For Development
+
+[Postman](https://nemicwebsolutions.postman.co/)
+
+- Used for saving the back end requests
+
+[Figma](https://www.figma.com/file/1UE2l2MAMF2Ly6QSO3GQrG/RealEstate-HomePage?node-id=0%3A1)
+
+- Used for showcasing the style
+
+[Github](https://github.com/Nergy101/NWS.OfficeWatch)
+
+- Github repo for the code
+
+[GitKraken](https://app.gitkraken.com/glo/board/YYwc12McSQBGwBzE)
+
+- Used for Tracking progress
+
+### Other Documentation
+
+[UML Diagrams](https://drive.google.com/drive/folders/1DlB3LiKtSBQEmVUVcj42kGMT4fmKqHGw)
+
+- Used for displaying the relationships
+
+## Next Steps
+
+- Kody
+  - Add documentation
+  - Add Postman request
+  - Build an office creation page on the FE
+  - Continue office searching on FE (blocked)
+- Chris
+  - Add Search Filters
+  - ...(to be added)
