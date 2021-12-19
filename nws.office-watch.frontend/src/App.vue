@@ -6,10 +6,13 @@
 </template>
 <script>
 import Navbar from "./layouts/Nav.vue";
-
 export default {
   components: {
     Navbar,
+  },
+  async created() {
+    await this.$store.dispatch("getUser");
+    let user = await this.$store.getters.getUser;
   },
 };
 </script>

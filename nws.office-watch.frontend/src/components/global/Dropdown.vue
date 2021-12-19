@@ -14,7 +14,7 @@
       aria-labelledby="dropdownMenuButton1"
     >
       <li v-for="(item, index) in settings.dropdownItems" :key="index">
-        <a class="dropdown-item" href="#">{{ item }}</a>
+        <a class="dropdown-item" :href="item.link">{{ item.name }}</a>
       </li>
     </ul>
   </div>

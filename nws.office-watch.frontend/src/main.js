@@ -7,7 +7,8 @@ import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
 import router from "./router";
 import VueApexCharts from "vue3-apexcharts";
-
+import store from "./store";
+import VueGoogleMaps from "@fawmi/vue-google-maps";
 // Create Vue app
 const app = createApp(App).use(router);
 
@@ -49,6 +50,13 @@ window.Apex.chart = {
 };
 // Add ApexCharts
 app.use(VueApexCharts);
-
+app.use(store);
+// Add Google Map Autocomplete
+app.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyAKF5i4ZIvnwisUNr0-7kM_9yjlpqg5Vdc",
+    libraries: "places",
+  },
+});
 // Mount app
 app.mount("#app");

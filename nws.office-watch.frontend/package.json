@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.17",
+    "@fawmi/vue-google-maps": "^0.9.4",
     "@popperjs/core": "^2.10.2",
     "@vue/apollo-option": "^4.0.0-alpha.15",
     "apexcharts": "^3.32.0",
@@ -23,7 +24,8 @@
     "vue": "^3.0.0",
     "vue-material-design-icons": "^4.13.0",
     "vue-router": "^4.0.0-0",
-    "vue3-apexcharts": "^1.4.1"
+    "vue3-apexcharts": "^1.4.1",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -44,14 +46,16 @@
     "env": {
       "node": true
     },
+    "rules": {
+      "no-unused-vars": "off"
+    },
     "extends": [
       "plugin:vue/vue3-essential",
       "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
-    },
-    "rules": {}
+    }
   },
   "browserslist": [
     "> 1%",

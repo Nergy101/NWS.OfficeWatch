@@ -67,11 +67,39 @@ export default {
     return {
       dropdown1: {
         title: "I’m a Looking for tenants",
-        dropdownItems: ["hello", "hello", "hello"],
+        dropdownItems: [
+          {
+            name: "Add your office",
+            link: "create-office",
+          },
+          {
+            name: "View your office",
+            link: "",
+          },
+
+          {
+            name: "View Stats",
+            link: "",
+          },
+        ],
       },
       dropdown2: {
         title: "I’m Looking for space",
-        dropdownItems: ["hello", "hello", "hello"],
+        dropdownItems: [
+          {
+            name: "Add your office",
+            link: "CreateOffice",
+          },
+          {
+            name: "View your office",
+            link: "",
+          },
+
+          {
+            name: "View Stats",
+            link: "",
+          },
+        ],
       },
     };
   },
