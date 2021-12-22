@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <Navbar />
+    <Navbar v-on:themeChanged="toggleTheme" />
     <router-view />
   </div>
 </template>
@@ -10,6 +10,22 @@ export default {
   components: {
     Navbar,
   },
+  data() {
+    return {
+      theme: "",
+    };
+  },
+  mounted() {
+    this.theme = localStorage.getItem("theme"); // retrieves theme value from local storage
+    document.documentElement.setAttribute("data-theme", this.theme); // sets the data-theme attribute
+  },
+  methods: {
+    toggleTheme() {
+      this.theme = this.theme == "darkMode" ? "" : "darkMode"; //toggles theme value
+      document.documentElement.setAttribute("data-theme", this.theme); // sets the data-theme attribute
+      localStorage.setItem("theme", this.theme); // stores theme value on local storage
+    },
+  },
   async created() {
     await this.$store.dispatch("getUser");
     let user = await this.$store.getters.getUser;
@@ -17,7 +33,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
 html {
   background-color: $backgroundColor1;
 }
@@ -28,7 +43,7 @@ html {
 
   margin-top: 9rem;
   font-size: 1.6rem;
-  
+
   background-color: $backgroundColor1;
 }
 
