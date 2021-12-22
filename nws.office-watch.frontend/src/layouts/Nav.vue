@@ -118,9 +118,6 @@ export default {
   methods: {
     toggleTheme() {
       this.$emit('themeChanged')
-      // this.theme = this.theme == "darkMode" ? "" : "darkMode"; //toggles theme value
-      // document.documentElement.setAttribute("data-theme", this.theme); // sets the data-theme attribute
-      // localStorage.setItem("theme", this.theme); // stores theme value on local storage
     },
   },
 };
