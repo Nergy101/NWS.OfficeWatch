@@ -1,10 +1,12 @@
 :root {
   --brand-color-1: #ff8d1b;
   --background-color-1: #fff;
+  --background-color-2: #eee;
   --background-color-form: #e7e7e7;
   --font-color-primary: rgb(36, 36, 36);
   --font-color-primary-lighten-1: rgb(66, 66, 66);
   --font-color-primary-lighten-2: rgb(116, 116, 116);
+  --font-color-primary-lighten-3: #ccc;
   --font-color-primary-lighten-5: #fff;
   --font-family: "Open Sans", "Inter", Avenir, Helvetica, Arial, sans-serif;
   --chart-color-1: #ff8d1b;
@@ -13,17 +15,21 @@
   --chart-color-4: #b37313;
   --chart-color-5: #ffe81b;
 }
-.dark-theme {
+
+[data-theme="darkMode"] {
   --brand-color-1: #ff8d1b;
   --background-color-1: #000;
+  --background-color-2: #111;
   --font-color-primary: rgb(231, 231, 231);
 }
 
 $brandColor1: var(--brand-color-1);
 $backgroundColor1: var(--background-color-1);
+$backgroundColor2: var(--background-color-2);
 $fontColorPrimary: var(--font-color-primary);
 $fontColorPrimaryLighten1: var(--font-color-primary-lighten-1);
 $fontColorPrimaryLighten2: var(--font-color-primary-lighten-2);
+$fontColorPrimaryLighten3: var(--font-color-primary-lighten-3);
 $fontColorPrimaryLighten5: var(--font-color-primary-lighten-5);
 $backgroundColorForm: var(--background-color-form);
 $fontFamily: var(--font-family);

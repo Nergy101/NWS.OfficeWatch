@@ -114,7 +114,7 @@ export default {
     &__heading {
       font-size: 4.5rem;
       font-weight: 700;
-      color: $fontColorPrimaryLighten1;
+      color: $fontColorPrimaryLighten3;
     }
     &__sub-heading {
       font-weight: 500;

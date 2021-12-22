@@ -31,8 +31,8 @@ app.use(apolloProvider);
 
 // GLOBAL CHART STYLES
 const r = document.querySelector(":root");
-let rs = getComputedStyle(r);
-let chartColors = [
+const rs = getComputedStyle(r);
+const chartColors = [
   "--chart-color-1",
   "--chart-color-2",
   "--chart-color-3",
@@ -40,17 +40,20 @@ let chartColors = [
   "--chart-color-5",
   "--chart-color-6",
 ];
-let fontFamily = rs.getPropertyValue("--font-family").trim();
-let colors = chartColors.map((color) => {
-  return `${rs.getPropertyValue(color).trim()}`;
-});
+const fontFamily = rs.getPropertyValue("--font-family").trim();
+const colors = chartColors.map(
+  (color) => `${rs.getPropertyValue(color).trim()}`
+);
+
 window.Apex.colors = colors;
 window.Apex.chart = {
   fontFamily: fontFamily,
 };
+
 // Add ApexCharts
 app.use(VueApexCharts);
 app.use(store);
+
 // Add Google Map Autocomplete
 app.use(VueGoogleMaps, {
   load: {
@@ -58,5 +61,6 @@ app.use(VueGoogleMaps, {
     libraries: "places",
   },
 });
+
 // Mount app
 app.mount("#app");

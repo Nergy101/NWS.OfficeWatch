@@ -17,12 +17,19 @@ export default {
 };
 </script>
 <style lang="scss">
+
+html {
+  background-color: $backgroundColor1;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   margin-top: 9rem;
   font-size: 1.6rem;
+  
+  background-color: $backgroundColor1;
 }
 
 #nav {

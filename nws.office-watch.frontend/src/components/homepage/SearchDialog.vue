@@ -171,11 +171,15 @@ export default {
 
 <style lang="scss">
 .search-dialog {
-  padding: 2.5rem 2.5rem 1rem 2.5rem;
   background: $backgroundColor1;
+  border-radius: 1rem;
+  border: 1px solid $brandColor1;
+
+  padding: 2.5rem 2.5rem 1rem 2.5rem;
   box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.1);
   label {
     font-weight: 500;
+    color: $fontColorPrimaryLighten3;
   }
   &__title {
     font-size: 1.7rem;
