@@ -15,7 +15,7 @@ export default {
       theme: "",
     };
   },
-  mounted() {
+  beforeMount() {
     this.theme = localStorage.getItem("theme"); // retrieves theme value from local storage
     document.documentElement.setAttribute("data-theme", this.theme); // sets the data-theme attribute
   },
