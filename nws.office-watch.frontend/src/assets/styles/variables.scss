@@ -18,9 +18,10 @@
 
 [data-theme="darkMode"] {
   --brand-color-1: #ff8d1b;
-  --background-color-1: #000;
+  --background-color-1: rgb(43, 43, 43);
   --background-color-2: #111;
   --font-color-primary: rgb(231, 231, 231);
+  --font-color-primary-lighten-1: rgb(197, 197, 197);
 }
 
 $brandColor1: var(--brand-color-1);

@@ -7,7 +7,9 @@
       <form>
         <div class="row bootstrap-row">
           <!-- ADDRESS  -->
-          <div class="form-group mb-5 col-6 search-dialog__address">
+          <div
+            class="form-group mb-3 col-md-6 col-sm-12 search-dialog__address"
+          >
             <label for="address" class="form-label">Address</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
@@ -27,7 +29,7 @@
             </div>
           </div>
           <!-- JOB TITLE -->
-          <div class="form-group mb-5 col-3 search-dialog__job-title">
+          <div class="form-group mb-3 col-6 col-lg-3 search-dialog__job-title">
             <label for="jobTitle" class="form-label">Job Title</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
@@ -49,7 +51,9 @@
         </div>
         <div class="row bootstrap-row">
           <!-- PROPERTY TYPE -->
-          <div class="form-group mb-5 col-3 search-dialog__property-type">
+          <div
+            class="form-group mb-3 col-6 col-lg-3 search-dialog__property-type"
+          >
             <label for="propertyType" class="form-label">Property Type</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
@@ -69,7 +73,7 @@
             </div>
           </div>
           <!-- SQFT -->
-          <div class="form-group mb-5 col-2 search-dialog__SQFT">
+          <div class="form-group col-6 col-lg-3 mb-3 search-dialog__SQFT">
             <label for="SQFT" class="form-label">SQFT</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
@@ -89,8 +93,32 @@
             </div>
           </div>
           <!-- PRICE RANGE -->
-          <div class="form-group mb-5 col-2 search-dialog__address">
-            <label for="priceRange" class="form-label">Price range</label>
+          <div
+            class="form-group mb-3 col-6 col-lg-3 search-dialog__price-range"
+          >
+            <label for="priceRange" class="form-label">Price range From</label>
+            <div class="input-group">
+              <div class="input-group-prepend" style="border-right: none">
+                <span class="input-group-text bg-white">
+                  <BIconCurrencyDollar class="bootstrap-icon" />&nbsp;
+                </span>
+              </div>
+              <input
+                name="priceRange"
+                type="text"
+                id="priceRange"
+                placeholder=""
+                class="form-control border-left-0"
+                required
+                style="border-left: none"
+              />
+            </div>
+          </div>
+          <!-- PRICE RANGE -->
+          <div
+            class="form-group mb-3 col-6 col-lg-3 search-dialog__price-range"
+          >
+            <label for="priceRange" class="form-label">Price range to</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
                 <span class="input-group-text bg-white">
@@ -109,7 +137,7 @@
             </div>
           </div>
           <!-- AMMENITIES -->
-          <div class="form-group mb-5 col-2 search-dialog__address">
+          <!-- <div class="form-group mb-3 col-6 col-lg-2 search-dialog__address">
             <label for="ammenitiesa" class="form-label">Ammenities</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
@@ -127,16 +155,16 @@
                 style="border-left: none"
               />
             </div>
-          </div>
-          <button
-            @click="searchOfficeSpaces()"
-            type="submit"
-            class="btn btn-primary col-2 form-button"
-          >
-            Submit
-          </button>
+          </div> -->
           <!-- SEARCH BUTTONS -->
         </div>
+        <button
+          @click="searchOfficeSpaces()"
+          type="submit"
+          class="btn btn-primary col-2 mt-3 form-button"
+        >
+          Submit
+        </button>
       </form>
     </div>
   </div>

@@ -1,9 +1,9 @@
 <template>
   <div class="co">
     <h2 class="co__title">Add your office</h2>
-    <div class="co__form form">
+    <form class="co__form form" ref="form">
       <!-- IMAGES -->
-      <div class="form-group mb-5 col-4">
+      <div class="form-group mb-5 col-sm-12 col-md-5">
         <label for="formFileMultiple" class="form-label"
           >Upload Pictures of the building</label
         >
@@ -15,7 +15,7 @@
         />
       </div>
       <!-- ADDRESS  -->
-      <div class="form-group mb-5 col-8">
+      <div class="form-group mb-5 col-sm-12 col-md-5 needs-validation">
         <label for="address" class="form-label">Find your Address Here</label>
         <div class="input-group">
           <div class="input-group-prepend" style="border-right: none">
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <!-- STREET -->
-        <div class="form-group mb-5 col-3">
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
           <label for="jobTitle" class="form-label">Street*</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
@@ -55,7 +55,7 @@
           </div>
         </div>
         <!-- Province -->
-        <div class="form-group mb-5 col-2">
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
           <label for="jobTitle" class="form-label">Province*</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
@@ -76,7 +76,7 @@
           </div>
         </div>
         <!-- COUNTRY -->
-        <div class="form-group mb-5 col-2">
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
           <label for="jobTitle" class="form-label">Country*</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
@@ -97,7 +97,7 @@
           </div>
         </div>
         <!-- POSTAL CODE -->
-        <div class="form-group mb-5 col-2">
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
           <label for="jobTitle" class="form-label">Postal Code*</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
@@ -119,7 +119,7 @@
         </div>
         <div class="row">
           <!-- JOB TITLE -->
-          <div class="form-group mb-5 col-3">
+          <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
             <label for="jobTitle" class="form-label"
               >Careers the building supports</label
             >
@@ -143,7 +143,7 @@
         </div>
 
         <!-- PROPERTY TYPE -->
-        <div class="form-group mb-5 col-3">
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
           <label for="propertyType" class="form-label">Property Type</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
@@ -151,26 +151,27 @@
                 <BIconHouseFill class="bootstrap-icon" />&nbsp;
               </span>
             </div>
-            <input
-              name="propertyType"
-              type="text"
-              id="propertyType"
-              placeholder="Property Type"
-              class="form-control border-left-0"
-              required
+            <select
+              class="form-select multiple mb-3"
               style="border-left: none"
-            />
+              aria-label="multiple select example"
+            >
+              <option selected>Property type</option>
+              <option value="1">High rise</option>
+              <option value="2">House</option>
+              <option value="3">Office</option>
+            </select>
           </div>
         </div>
       </div>
       <button
         @click="createOfficeSpace()"
         type="submit"
-        class="btn btn-primary col-2 form-button"
+        class="btn btn-primary col-md-2 col-sm-4 form-button"
       >
         Submit
       </button>
-    </div>
+    </form>
   </div>
 </template>
 
@@ -252,6 +253,9 @@ export default {
         postalcode: postcode,
         longname: longName,
       };
+    },
+    createOfficeSpace() {
+      console.log(this.$refs.form);
     },
   },
 };

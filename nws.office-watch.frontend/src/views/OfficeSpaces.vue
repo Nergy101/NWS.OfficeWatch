@@ -1,6 +1,7 @@
 <template>
   <div class="offices-spaces">
-    <div class="office-spaces__cards">
+    <div v-if="loading">loading...</div>
+    <div v-if="officeSpaces" class="office-spaces__cards">
       <OfficeSpaceCard
         v-for="(office, index) in officeSpaces"
         class="office-spaces__cards__card"
@@ -21,27 +22,15 @@ export default {
   },
   data() {
     return {
-      officeSpaces: [
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-        { name: "test" },
-      ],
+      officeSpaces: [],
     };
   },
-  async mounted() {
+  async created() {
+    this.loading = true;
     let res = await apolloClient.query({
       query: gql`
         query {
-          officeSpaces(name: "Bamboo") {
+          officeSpaces {
             name
             office {
               address {
@@ -51,14 +40,17 @@ export default {
               }
             }
             price
-            rating
-            availableFrom
-            availableUntil
+            rating {
+              locationRating
+            }
+            availableFromUtc
+            availableUntilUtc
           }
         }
       `,
     });
     this.officeSpaces = res.data.officeSpaces;
+    this.loading = false;
   },
 };
 </script>

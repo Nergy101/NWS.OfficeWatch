@@ -38,6 +38,7 @@ html {
 }
 
 #app {
+  color: $fontColorPrimary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

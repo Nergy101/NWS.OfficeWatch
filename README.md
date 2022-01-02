@@ -69,8 +69,6 @@ There wont be any 'over'- or 'under'-fetching as we can request exactly what we 
 ## Next Steps
 
 - Kody
-  - Add documentation
-  - Add Postman request
   - Build an office creation page on the FE
   - Continue office searching on FE (blocked)
 - Chris

@@ -37,7 +37,7 @@ import SearchDialog from "../components/homepage/SearchDialog.vue";
 export default {
   components: {
     Slider,
-    SearchDialog
+    SearchDialog,
   },
   data() {
     return {
@@ -114,7 +114,7 @@ export default {
     &__heading {
       font-size: 4.5rem;
       font-weight: 700;
-      color: $fontColorPrimaryLighten3;
+      color: $fontColorPrimaryLighten1;
     }
     &__sub-heading {
       font-weight: 500;
@@ -132,6 +132,31 @@ export default {
 @media screen and (min-width: 2000px) {
   html {
     font-size: 125%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .segment-1 {
+    &__overlay {
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin-left: 0;
+      margin-top: 30rem;
+    }
+    &__title {
+      width: 100vw;
+      margin-top: 0rem;
+      text-align: center;
+    }
+    &__slider {
+      grid-column: 1 / 13;
+      height: 30rem;
+      margin-top: 0rem;
+    }
+    &__search {
+      width: 90vw;
+    }
   }
 }
 </style>

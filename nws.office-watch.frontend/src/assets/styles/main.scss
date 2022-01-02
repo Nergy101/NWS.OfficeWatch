@@ -21,4 +21,8 @@ $input-font-family: $fontFamily;
 $input-font-size: 1.6rem;
 $input-background-color: $backgroundColorForm;
 $input-btn-font-size: 1.6rem;
+
+$form-select-font-family: $fontFamily;
+$form-select-font-size: 1.6rem !important;
+$form-select-color: $fontColorPrimaryLighten2;
 @import "bootstrap/scss/bootstrap.scss";
