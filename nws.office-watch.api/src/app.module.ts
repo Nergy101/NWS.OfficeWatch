@@ -33,7 +33,8 @@ import { DateRangeService } from './services/shared/daterange-service';
     // OfficeModule,
     // UserModule,
     MongooseModule.forRoot(
-      'mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      // 'mongodb+srv://nergy101:test123@cluster0.7kjhf.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+      'mongodb+srv://Kody:test1234@cluster0.nrh0z.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     ),
     MongooseModule.forFeature([
       { name: Address.name, schema: AddressSchema },

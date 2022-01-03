@@ -50,6 +50,7 @@
           />
         </svg>
       </div>
+      <Login></Login>
       <button
         @click="toggleTheme"
         aria-label="Toggle themes"
@@ -70,12 +71,15 @@
 
 <script>
 import DropDown from "../components/global/Dropdown.vue";
+import Login from "../components/Login.vue";
 export default {
   components: {
     DropDown,
+    Login,
   },
   data() {
     return {
+      login: false,
       theme: "",
       dropdown1: {
         title: "I’m a Looking for tenants",
@@ -116,8 +120,11 @@ export default {
     };
   },
   methods: {
+    toggleLogin() {
+      this.login = !this.login;
+    },
     toggleTheme() {
-      this.$emit('themeChanged')
+      this.$emit("themeChanged");
     },
   },
 };

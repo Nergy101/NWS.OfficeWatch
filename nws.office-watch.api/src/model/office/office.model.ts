@@ -17,6 +17,14 @@ export class Office {
   name: string;
 
   @Prop()
+  @Field({description: 'Property type'})
+  propertyType: string;
+
+  @Prop()
+  @Field(() => [String], {description: 'array of careers'})
+  careers: string[];
+
+  @Prop()
   @Field()
   createdAt: Date;
 

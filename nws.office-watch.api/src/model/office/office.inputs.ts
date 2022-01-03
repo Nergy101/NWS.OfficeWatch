@@ -6,6 +6,12 @@ export class CreateOfficeInput {
   @Field({ description: 'Company name' })
   name: string;
 
+  @Field({ description: 'Property Type' })
+  propertyType: string;
+
+  @Field(() => [String], {description: 'array of careers'})
+  careers: string[];
+
   @Field({
     description: 'Date of Office creation in OfficeWatch',
     defaultValue: new Date(),
@@ -25,6 +31,12 @@ export class CreateOfficeInput {
 export class UpdateOfficeInput {
   @Field((_type) => ID, { description: 'Office GUID' })
   _id: ObjectId;
+
+  @Field({ description: 'Property Type' })
+  propertyType: string;
+
+  @Field(() => [String], {description: 'array of careers'})
+  careers: string[];
 
   @Field({ description: 'Company name' })
   name: string;
