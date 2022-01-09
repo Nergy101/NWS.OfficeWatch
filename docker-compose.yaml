@@ -1,0 +1,29 @@
+version: '2'
+services:
+  web-backend:
+    image: nergy101/nws-ow-api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_URL: config/this
+
+  web-frontend:
+    image: nergy101/nws-ow-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongo
+      - web-backend
+    environment:
+      API_URL: config/this 
+    
+  mongo:
+    image: mongo:5.0.5-focal
+    restart: always
+    volumes:
+      - './data:/data/db'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
