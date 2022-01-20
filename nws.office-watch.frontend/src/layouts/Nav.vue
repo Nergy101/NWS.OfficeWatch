@@ -29,14 +29,8 @@
     </div>
     <div class="links-and-buttons">
       <div class="navbar-container__links">
-        <DropDown
-          :settings="dropdown1"
-          class="navbar-container__links__link"
-        ></DropDown>
-        <DropDown
-          :settings="dropdown2"
-          class="navbar-container__links__link"
-        ></DropDown>
+        <DropDown :settings="dropdown1" class="navbar-container__links__link"></DropDown>
+        <DropDown :settings="dropdown2" class="navbar-container__links__link"></DropDown>
       </div>
       <div class="navbar-container__icons">
         <svg
@@ -45,12 +39,10 @@
           class="bi bi-person-fill navbar-container__icons--1"
           viewBox="0 0 16 16"
         >
-          <path
-            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-          />
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
         </svg>
       </div>
-      <Login></Login>
+      <!-- <Login></Login> -->
       <button
         @click="toggleTheme"
         aria-label="Toggle themes"
@@ -61,6 +53,7 @@
       </button>
       <button
         type="button"
+        @click="findSpace()"
         class="btn btn-outline-primary navbar-container__button"
       >
         Find Space
@@ -71,11 +64,11 @@
 
 <script>
 import DropDown from "../components/global/Dropdown.vue";
-import Login from "../components/Login.vue";
+// import Login from "../components/Login.vue";
 export default {
   components: {
     DropDown,
-    Login,
+    // Login,
   },
   data() {
     return {
@@ -103,12 +96,12 @@ export default {
         title: "I’m Looking for space",
         dropdownItems: [
           {
-            name: "Add your office",
-            link: "CreateOffice",
+            name: "Find an workspace",
+            link: "office-spaces",
           },
           {
-            name: "View your office",
-            link: "",
+            name: "Find an office",
+            link: "offices",
           },
 
           {
@@ -125,6 +118,14 @@ export default {
     },
     toggleTheme() {
       this.$emit("themeChanged");
+    },
+    findSpace() {
+      this.$router.push({
+        name: "OfficeSpaces",
+        params: {
+          search: "",
+        },
+      });
     },
   },
 };

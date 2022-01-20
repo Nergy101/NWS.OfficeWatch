@@ -28,7 +28,9 @@ const apolloProvider = createApolloProvider({
 });
 export default apolloClient;
 app.use(apolloProvider);
-
+app.config.globalProperties.$apolloClient = apolloClient;
+//import gql from "graphql-tag";
+//app.config.globalProperties.$gql = gql;
 // GLOBAL CHART STYLES
 const r = document.querySelector(":root");
 const rs = getComputedStyle(r);
@@ -41,9 +43,7 @@ const chartColors = [
   "--chart-color-6",
 ];
 const fontFamily = rs.getPropertyValue("--font-family").trim();
-const colors = chartColors.map(
-  (color) => `${rs.getPropertyValue(color).trim()}`
-);
+const colors = chartColors.map((color) => `${rs.getPropertyValue(color).trim()}`);
 
 window.Apex.colors = colors;
 window.Apex.chart = {

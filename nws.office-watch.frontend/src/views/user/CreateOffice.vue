@@ -2,17 +2,26 @@
   <div class="co">
     <h2 class="co__title">Add your office</h2>
     <form class="co__form form" ref="form">
+      <!-- COMPANY NAME -->
+      <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
+        <label for="companyName" class="form-label">Company name*</label>
+        <div class="input-group">
+          <input
+            v-model="newOffice.name"
+            name="companyName"
+            type="text"
+            id="companyName"
+            placeholder="Name"
+            class="form-control border-left-0"
+            required
+            style="border-left: none"
+          />
+        </div>
+      </div>
       <!-- IMAGES -->
       <div class="form-group mb-5 col-sm-12 col-md-5">
-        <label for="formFileMultiple" class="form-label"
-          >Upload Pictures of the building</label
-        >
-        <input
-          class="form-control col-5"
-          type="file"
-          id="formFileMultiple"
-          multiple
-        />
+        <label for="formFileMultiple" class="form-label">Upload Pictures of the building</label>
+        <input class="form-control col-5" type="file" id="formFileMultiple" multiple />
       </div>
       <!-- ADDRESS  -->
       <div class="form-group mb-5 col-sm-12 col-md-5 needs-validation">
@@ -48,6 +57,27 @@
               type="address"
               id="jobTitle"
               placeholder="Street"
+              class="form-control border-left-0"
+              required
+              style="border-left: none"
+            />
+          </div>
+        </div>
+        <!-- city -->
+        <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
+          <label for="city" class="form-label">city*</label>
+          <div class="input-group">
+            <div class="input-group-prepend" style="border-right: none">
+              <span class="input-group-text bg-white">
+                <BIconGeoAltFill class="bootstrap-icon" />&nbsp;
+              </span>
+            </div>
+            <input
+              v-model="newOffice.address.city"
+              name="city"
+              type="text"
+              id="city"
+              placeholder="city"
               class="form-control border-left-0"
               required
               style="border-left: none"
@@ -120,9 +150,7 @@
         <div class="row">
           <!-- JOB TITLE -->
           <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
-            <label for="jobTitle" class="form-label"
-              >Careers the building supports</label
-            >
+            <label for="jobTitle" class="form-label">Careers the building supports</label>
             <div class="input-group">
               <div class="input-group-prepend" style="border-right: none">
                 <span class="input-group-text bg-white">
@@ -130,6 +158,7 @@
                 </span>
               </div>
               <input
+                v-model="newOffice.careers"
                 name="jobTitle"
                 type="address"
                 id="jobTitle"
@@ -144,7 +173,7 @@
 
         <!-- PROPERTY TYPE -->
         <div class="form-group mb-5 col-12 col-sm-6 col-md-3">
-          <label for="propertyType" class="form-label">Property Type</label>
+          <label for="propertyType" class="form-label">Property Type*</label>
           <div class="input-group">
             <div class="input-group-prepend" style="border-right: none">
               <span class="input-group-text bg-white">
@@ -155,6 +184,8 @@
               class="form-select multiple mb-3"
               style="border-left: none"
               aria-label="multiple select example"
+              required
+              v-model="newOffice.propertyType"
             >
               <option selected>Property type</option>
               <option value="1">High rise</option>
@@ -165,7 +196,7 @@
         </div>
       </div>
       <button
-        @click="createOfficeSpace()"
+        @click.prevent="createOfficeSpace()"
         type="submit"
         class="btn btn-primary col-md-2 col-sm-4 form-button"
       >
@@ -176,20 +207,35 @@
 </template>
 
 <script>
-import {
-  BIconGeoAltFill,
-  BIconHouseFill,
-  BIconMortarboardFill,
-} from "bootstrap-icons-vue";
+import { BIconGeoAltFill, BIconHouseFill, BIconMortarboardFill } from "bootstrap-icons-vue";
+//import apolloClient from "../main.js";
+import gql from "graphql-tag";
 export default {
   components: {
     BIconGeoAltFill,
     BIconHouseFill,
     BIconMortarboardFill,
   },
+  async created() {
+    // Pull a list of the countries to make sure the country filled out is in the countries. Compares iso2Code
+    let res = await this.$apolloClient.query({
+      query: gql`
+        query countries {
+          countries {
+            _id
+            name
+            iso2Name
+          }
+        }
+      `,
+    });
+    this.countries = res.data.countries;
+  },
   data() {
     return {
+      //Initializing new office
       newOffice: {
+        name: "",
         images: [],
         address: {
           street: "",
@@ -197,23 +243,26 @@ export default {
           country: "",
           postalcode: "",
           longname: "",
+          countryID: "",
         },
         careers: "",
         propertyType: "",
       },
+      countries: [],
     };
   },
   methods: {
+    // Method for the google Field to set the other input fields with the countries
     setPlace(place) {
       let longName = "";
       let shortName = "";
       let country = "";
       let address1 = "";
       let postcode = "";
-      console.log(place.address_components);
+      let countryISO = "";
+      console.log(place);
       for (const component of place.address_components) {
         const componentType = component.types[0];
-
         switch (componentType) {
           case "street_number": {
             address1 = `${component.long_name} ${address1}`;
@@ -243,6 +292,7 @@ export default {
           }
           case "country":
             country = component.long_name;
+            countryISO = component.short_name;
             break;
         }
       }
@@ -251,11 +301,80 @@ export default {
         province: shortName,
         country: country,
         postalcode: postcode,
-        longname: longName,
+        city: longName,
+        countryISO: countryISO,
       };
+      console.log(this.newOffice.address.longname);
     },
-    createOfficeSpace() {
-      console.log(this.$refs.form);
+    //Method to created the office space
+    //! Need to add validation
+    //! Need to add address variables
+    async createOfficeSpace() {
+      // Checks to check the list of countries to match the iso code to use the ObjectID
+      if (this.newOffice?.address?.countryISO) {
+        this.countries.forEach((country) => {
+          if (country.iso2Name === this.newOffice.address.countryISO) {
+            this.newOffice.address.countryID = country._id;
+            console.log(this.$apolloClient);
+          }
+        });
+        // If there is a country ID  make an address object
+        if (this.newOffice.address.countryID) {
+          let res = await this.$apolloClient.mutate({
+            mutation: gql`
+              mutation createAddress {
+                createAddress(
+                  createdAddress: {
+                    area: "Utrecht"
+                    city: "Utrecht"
+                    countryId: "619941c0a068783793a82b9e"
+                    postal: "1122AB"
+                    streetName: "TestStraat"
+                    streetNumber: 1
+                  }
+                ) {
+                  _id
+                }
+              }
+            `,
+          });
+          console.log(this.newOffice);
+          // If the address is created create a new office
+          if (res.data.createAddress._id) {
+            let newOffice = await this.$apolloClient.mutate({
+              mutation: gql`
+                mutation createOffice(
+                  $name: String!
+                  $addressID: ID!
+                  $creatorId: ID!
+                  $propertyType: String!
+                  $careers: [String!]!
+                ) {
+                  createOffice(
+                    createdOffice: {
+                      addressId: $addressID
+                      creatorId: $creatorId
+                      name: $name
+                      propertyType: $propertyType
+                      careers: $careers
+                    }
+                  ) {
+                    _id
+                  }
+                }
+              `,
+              variables: {
+                name: this.newOffice.name,
+                addressID: this.newOffice.addressId,
+                creatorId: this.$store.state.user,
+                careers: this.newOffice.careers,
+                propertyType: this.newOffice.propertyType,
+              },
+            });
+            console.log(newOffice);
+          }
+        }
+      }
     },
   },
 };

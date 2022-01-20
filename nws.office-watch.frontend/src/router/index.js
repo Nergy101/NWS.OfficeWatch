@@ -12,8 +12,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
     path: "/create-office",
@@ -22,8 +21,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/user/CreateOffice.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/user/CreateOffice.vue"),
   },
   {
     path: "/office-spaces",
@@ -32,8 +30,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/OfficeSpaces.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/OfficeSpaces.vue"),
+  },
+  {
+    path: "/offices",
+    name: "Offices",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ "../views/Offices.vue"),
   },
   {
     path: "/office-spaces/test",
@@ -41,8 +47,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/OfficeSpaceDetail.vue"),
+    component: () => import(/* webpackChunkName: "about" */ "../views/OfficeSpaceDetail.vue"),
   },
 ];
 
